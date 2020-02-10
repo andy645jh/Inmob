@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SelectSearch from './SelectSearch';
 
 
 class SearchSection extends Component {
@@ -58,31 +59,11 @@ class SearchSection extends Component {
             { (!isLoading && estates_type!=null) && 
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
-                    <div className="d-sm-inline d-xs-block">                            
-                        <select id="inputState" className="form-control">
-                            <option defaultValue>DEPARTAMENTO</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div className="d-sm-inline d-xs-block">                            
-                        <select id="inputState" className="form-control" >
-                            <option defaultValue>CIUDAD</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                        <div className="d-sm-inline d-xs-block">                            
-                        <select id="inputState" className="form-control">
-                            <option defaultValue>OPERACION</option>
-                            <option>ARRIENDO</option>
-                            <option>VENTA</option>
-                        </select>
-                    </div>
-                    <div className="d-sm-inline d-xs-block">                            
-                        <select id="inputState" className="form-control">
-                            <option defaultValue >TIPO DE INMUEBLE</option>
-                            { opts }
-                        </select>
-                    </div>      
+                    <SelectSearch defaultVal="DEPARTAMENTO"  opts={estates_type} />
+                    <SelectSearch defaultVal="CIUDAD"  opts={estates_type} />
+                    <SelectSearch defaultVal="OPERACION"  opts={estates_type} />
+                    <SelectSearch defaultVal="TIPO DE INMUEBLE"  opts={estates_type} />
+                         
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           
                     </div> 
