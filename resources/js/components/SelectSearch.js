@@ -8,6 +8,14 @@ class SelectSearch extends Component {
             defaultVal: this.props.defaultVal,
             opts: this.props.opts
         };
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    onChange(e)
+    {
+        console.log("SelectSearch.onChange: "+e.target.value);
+        this.props.onChange(e);
     }
 
     render()
@@ -15,7 +23,7 @@ class SelectSearch extends Component {
         console.log("Default: ",this.state);
         return(
             <div className="d-sm-inline d-xs-block">                            
-                <select id="inputState" className="form-control">
+                <select id="inputState" className="form-control" onChange={this.onChange}>
                     <option defaultValue>{this.state.defaultVal}</option>
                     { this.createOpts() }
                 </select>

@@ -47,6 +47,16 @@ class SearchSection extends Component {
         return arrTen;
     }
 
+    onClick(e)
+    {
+        console.log("Onclick");
+    }
+
+    onChange(e)
+    {
+        console.log("onChange: "+e.target.value);
+    }
+
     render() {
         const {isLoading, estates_type} = this.state;
         const opts = estates_type != null ? this.createOpts(estates_type):null;
@@ -59,17 +69,17 @@ class SearchSection extends Component {
             { (!isLoading && estates_type!=null) && 
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
-                    <SelectSearch defaultVal="DEPARTAMENTO"  opts={estates_type} />
-                    <SelectSearch defaultVal="CIUDAD"  opts={estates_type} />
-                    <SelectSearch defaultVal="OPERACION"  opts={estates_type} />
-                    <SelectSearch defaultVal="TIPO DE INMUEBLE"  opts={estates_type} />
+                    <SelectSearch defaultVal="DEPARTAMENTO" opts={estates_type} onChange={this.onChange} />
+                    <SelectSearch defaultVal="CIUDAD" opts={estates_type} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="OPERACION" opts={estates_type} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="TIPO DE INMUEBLE" opts={estates_type} onChange={this.onChange}/>
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           
                     </div> 
         
                     <div className="d-sm-inline d-xs-block">                            
-                        <button type="submit" className="btn btn-primary">Search</button>
+                        <button type="button" className="btn btn-primary" onClick={this.onClick}>Search</button>
                     </div>                                                 
                 </form>
             </div>
