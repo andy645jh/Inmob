@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="css/bootstrap.css">
         
     </head>
-    <body>        
-        <div id="example"></div>
+    <body>  
+        <div id="name" data-id="search"/>      
+        <div id="page"></div>
     </body>
 
     <script src="js/jquery-3.3.1.slim.min.js"></script>

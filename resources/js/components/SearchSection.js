@@ -80,7 +80,8 @@ class SearchSection extends Component {
         
                     <div className="d-sm-inline d-xs-block">                            
                         <button type="button" className="btn btn-primary" onClick={this.onClick}>Search</button>
-                    </div>                                                 
+                    </div>   
+                    <a href="/hola">Prueba</a>                                              
                 </form>
             </div>
             }
