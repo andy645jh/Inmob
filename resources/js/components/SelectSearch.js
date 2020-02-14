@@ -15,7 +15,7 @@ class SelectSearch extends Component {
     onChange(e)
     {
         console.log("SelectSearch.onChange: "+e.target.value);
-        this.props.onChange(e);
+        this.props.onChange(e,this.props.type);
     }
 
     render()

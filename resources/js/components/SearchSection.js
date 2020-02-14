@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SelectSearch from './SelectSearch';
-
+import SearchTypes from './Enums';
 
 class SearchSection extends Component {
     constructor(props)
@@ -49,12 +49,12 @@ class SearchSection extends Component {
 
     onClick(e)
     {
-        console.log("Onclick");
+        location.href = "/hola";
     }
 
-    onChange(e)
-    {
-        console.log("onChange: "+e.target.value);
+    onChange(e, data)
+    {                
+        window.localStorage.setItem(data, e.target.value);
     }
 
     render() {
@@ -69,10 +69,11 @@ class SearchSection extends Component {
             { (!isLoading && estates_type!=null) && 
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
-                    <SelectSearch defaultVal="DEPARTAMENTO" opts={estates_type} onChange={this.onChange} />
-                    <SelectSearch defaultVal="CIUDAD" opts={estates_type} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="OPERACION" opts={estates_type} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="TIPO DE INMUEBLE" opts={estates_type} onChange={this.onChange}/>
+                
+                    <SelectSearch defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} opts={estates_type} onChange={this.onChange} />
+                    <SelectSearch defaultVal="CIUDAD" type={SearchTypes.CIT} opts={estates_type} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="OPERACION" type={SearchTypes.OPE} opts={estates_type} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} opts={estates_type} onChange={this.onChange}/>
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           
@@ -80,8 +81,7 @@ class SearchSection extends Component {
         
                     <div className="d-sm-inline d-xs-block">                            
                         <button type="button" className="btn btn-primary" onClick={this.onClick}>Search</button>
-                    </div>   
-                    <a href="/hola">Prueba</a>                                              
+                    </div>                                                                  
                 </form>
             </div>
             }

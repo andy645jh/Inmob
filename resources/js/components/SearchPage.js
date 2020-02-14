@@ -5,6 +5,7 @@ import SearchSection from './SearchSection';
 import EstateList from './EstateList';
 import NavBar from './NavBar';
 import Accordion from './Accordion';
+import ResultSection from './ResultSection';
 
 export default class SearchPage extends Component {
     constructor(props)
@@ -16,7 +17,7 @@ export default class SearchPage extends Component {
         return (
             <div className="container">     
                 <NavBar />             
-
+                <ResultSection />
                 <div className="row">
                     <div className="col-md-9">
                         <EstateList />
