@@ -12,7 +12,7 @@
         
     </head>
     <body> 
-        <div id="name" data-id="index"/>        
+        <div id="name" data-id="index"></div>        
         <div id="page"></div>
     </body>
 

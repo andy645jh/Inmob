@@ -1,5 +1,5 @@
 import React from 'react';
-import placeholder from '../../img/placeholder.jpg'; // Tell Webpack this JS file uses this image
+import placeholder from '../../../img/placeholder.jpg'; // Tell Webpack this JS file uses this image
 import CardIconRow from './CardIconsRow';
 
 const CardInfo = ({ id }) => (

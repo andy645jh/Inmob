@@ -20,10 +20,10 @@ if (document.getElementById('name')) {
 
 if(data === 'index')
 {
-    require('./components/IndexPage');
+    require('./components/index_page/IndexPage');
 }
 
 if(data === 'search')
 {
-    require('./components/SearchPage');
+    require('./components/search_page/SearchPage');
 }

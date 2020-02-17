@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import placeholder from '../../img/placeholder.jpg'; 
+import placeholder from '../../../img/placeholder.jpg'; 
 import SearchSection from './SearchSection';
 import EstateList from './EstateList';
 import NavBar from './NavBar';

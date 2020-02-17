@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SelectSearch from './SelectSearch';
-import SearchTypes from './Enums';
+import SelectDepartamento from './SelectDepartamento';
+import SearchTypes from '../utils/Enums';
+import StorageData from '../utils/StorageData';
 
 class SearchSection extends Component {
     constructor(props)
@@ -54,7 +56,8 @@ class SearchSection extends Component {
 
     onChange(e, data)
     {                
-        window.localStorage.setItem(data, e.target.value);
+        StorageData.set(data, e.target.value);
+        //window.localStorage.setItem(data, e.target.value);
     }
 
     render() {
@@ -70,10 +73,10 @@ class SearchSection extends Component {
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
-                    <SelectSearch defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} opts={estates_type} onChange={this.onChange} />
-                    <SelectSearch defaultVal="CIUDAD" type={SearchTypes.CIT} opts={estates_type} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="OPERACION" type={SearchTypes.OPE} opts={estates_type} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} opts={estates_type} onChange={this.onChange}/>
+                    <SelectDepartamento defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} onChange={this.onChange} />
+                    <SelectSearch defaultVal="CIUDAD" type={SearchTypes.CIT} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
+                    <SelectSearch defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           

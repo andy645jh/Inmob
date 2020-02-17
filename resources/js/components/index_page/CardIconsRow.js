@@ -1,5 +1,5 @@
 import React from 'react';
-import bed_icon from '../../img/bed.png';
+import bed_icon from '../../../img/bed.png';
 
 const CardIconRow = ({ id }) => (
     
