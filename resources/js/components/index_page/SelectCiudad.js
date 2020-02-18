@@ -32,7 +32,7 @@ class SelectCiudad extends Component {
         console.log("Default: ",this.state);
         return (
             <>
-                {isLoading && "Loading ..."}                
+                {isLoading && "Loading ..." }                
                 <div className="d-sm-inline d-xs-block">
                     <select id="inputState" className="form-control" onChange={this.onChange}>
                         <option defaultValue>{this.state.defaultVal}</option>
