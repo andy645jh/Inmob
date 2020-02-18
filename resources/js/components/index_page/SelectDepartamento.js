@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EventsObserver from '../utils/EventsObserver';
 
 class SelectDepartamento extends Component {
     
@@ -10,7 +11,7 @@ class SelectDepartamento extends Component {
             cities: null
         };
 
-        this.onChange = this.onChange.bind(this);        
+        this.onChange = this.onChange.bind(this);               
     }
 
     componentDidMount() {
@@ -41,6 +42,7 @@ class SelectDepartamento extends Component {
     {
         console.log("SelectSearch.onChange: ",this.state.cities[e.target.value].ciudades);
         this.props.onChange(e,this.props.type);
+        EventsObserver.broadcast("Test", this.state.cities[e.target.value].ciudades);
     }
     
     render()

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SelectSearch from './SelectSearch';
 import SelectDepartamento from './SelectDepartamento';
+import SelectCiudad from './SelectCiudad';
 import SearchTypes from '../utils/Enums';
 import StorageData from '../utils/StorageData';
 
@@ -74,7 +75,7 @@ class SearchSection extends Component {
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
                     <SelectDepartamento defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} onChange={this.onChange} />
-                    <SelectSearch defaultVal="CIUDAD" type={SearchTypes.CIT} onChange={this.onChange}/>
+                    <SelectCiudad defaultVal="CIUDAD" type={SearchTypes.CIT} onChange={this.onChange}/>
                     <SelectSearch defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
                     <SelectSearch defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
                          
