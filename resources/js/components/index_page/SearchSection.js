@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import SelectSearch from './SelectSearch';
+import SelectEstateType from './SelectEstateType';
+import SelectOperation from './SelectOperation';
 import SelectDepartamento from './SelectDepartamento';
 import SelectCiudad from './SelectCiudad';
 import SearchTypes from '../utils/Enums';
@@ -10,20 +11,20 @@ class SearchSection extends Component {
     {
         super(props); 
         this.state = {
-            estates_type: null,
+            estates: null,
             isLoading: null
         };
     }
 
     componentDidMount() {
-        this.getEstatesTypes();              
+        this.getEstates();              
     }
 
-    async getEstatesTypes() {
+    async getEstates() {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/test',
+                const response = await fetch('https://demo9207076.mockable.io/estates',
                 {
                     headers:{
                         elkin_key: 'elkin_value'
@@ -31,8 +32,8 @@ class SearchSection extends Component {
                 });
                 
                 const estatesJson = await response.json();                
-                console.log("SearchSection.Estates 0: ", estatesJson.estates_type);
-                this.setState({ estates_type: estatesJson.estates_type, isLoading: false});
+                console.log("SearchSection.Estates 0: ", estatesJson.estates);
+                this.setState({ estates: estatesJson.estates, isLoading: false});
                 
             } catch (err) {
                 this.setState({ isLoading: false });
@@ -41,11 +42,11 @@ class SearchSection extends Component {
         }
     }
 
-    createOpts(statesTypes)
+    createOpts(estates)
     {
         var arrTen = [];
-        for (var k = 0; k < statesTypes.length; k++) {
-            arrTen.push(<option key={statesTypes[k].id} value={statesTypes[k].id}> {statesTypes[k].name} </option>);
+        for (var k = 0; k < estates.length; k++) {
+            arrTen.push(<option key={estates[k].id} value={estates[k].id}> {estates[k].name} </option>);
         }
         return arrTen;
     }
@@ -62,22 +63,22 @@ class SearchSection extends Component {
     }
 
     render() {
-        const {isLoading, estates_type} = this.state;
-        const opts = estates_type != null ? this.createOpts(estates_type):null;
+        const {isLoading, estates} = this.state;
+        const opts = estates != null ? this.createOpts(estates):null;
         console.log("Opts: ",opts);
-        console.log("statesTypes: ",estates_type);
+        console.log("statesTypes: ",estates);
 
         return (       
             <>
             { isLoading && "Loading ..."}
-            { (!isLoading && estates_type!=null) && 
+            { (!isLoading && estates!=null) && 
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
                     <SelectDepartamento defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} onChange={this.onChange} />
                     <SelectCiudad defaultVal="CIUDAD" type={SearchTypes.CIT} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
-                    <SelectSearch defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
+                    <SelectOperation defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
+                    <SelectEstateType defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           
@@ -93,4 +94,5 @@ class SearchSection extends Component {
         )           
     }    
 }
+
 export default SearchSection

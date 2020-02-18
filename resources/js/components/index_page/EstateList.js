@@ -19,7 +19,7 @@ class EstateList extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/test',
+                const response = await fetch('https://demo9207076.mockable.io/estates',
                 {
                     headers:{
                         elkin_key: 'elkin_value'
