@@ -17,7 +17,7 @@ class SearchSection extends Component {
     }
 
     componentDidMount() {
-        this.getEstates();              
+        //this.getEstates();              
     }
 
     async getEstates() {
@@ -70,8 +70,7 @@ class SearchSection extends Component {
 
         return (       
             <>
-            { isLoading && "Loading ..."}
-            { (!isLoading && estates!=null) && 
+            
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
@@ -89,7 +88,7 @@ class SearchSection extends Component {
                     </div>                                                                  
                 </form>
             </div>
-            }
+            
             </>
         )           
     }    
