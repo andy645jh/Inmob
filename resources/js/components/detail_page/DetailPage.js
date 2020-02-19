@@ -32,7 +32,10 @@ export default class DetailPage extends Component {
                         <div className="row">Carasteristicas</div>
                         <div className="row">Carasteristicas Content</div>
                     </div>
-                    <div className="col">Preguntas</div>
+                    <div className="col">
+                        <div className="row">Preguntas</div>
+                        <div className="row">Preguntas Content</div>
+                    </div>
                 </div>
 
                 <div className="row">
