@@ -14,6 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/hola', function () {
+Route::get('/search', function () {
     return view('search');
+});
+
+Route::get('/detail', function () {
+    return view('detail');
 });

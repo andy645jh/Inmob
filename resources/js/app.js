@@ -27,3 +27,8 @@ if(data === 'search')
 {
     require('./components/search_page/SearchPage');
 }
+
+if(data === 'detail')
+{
+    require('./components/detail_page/DetailPage');
+}
