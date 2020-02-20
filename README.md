@@ -1,4 +1,4 @@
-<p align="center">INMOB</p>
+<h1 align="center">INMOB</h1>
 
 ## Descripcion
  * Desarrollo de aplicacion para uso de inmobiliarias, los modulos esperados son:
