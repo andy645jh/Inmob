@@ -1,7 +1,7 @@
 class StorageData {    
     static get(key)
     {
-        localStorage.getItem(key);
+        return localStorage.getItem(key);
     }
 
     static set(key, value)

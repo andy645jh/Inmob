@@ -20,3 +20,7 @@
  * Pagina para iniciar sesion
  * Pagina de administracion de contenido
  
+## Notas
+ * No se usa el sistema de rutas de React para probar implementacion experimental multipage
+ * Se usa sistema de comunicacion por eventos propia
+ * Se usa sistema de guardado temporal usando localStorage  
