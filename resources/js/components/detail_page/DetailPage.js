@@ -90,7 +90,7 @@ export default class DetailPage extends Component {
                                     <div className="row">
                                         <form className="w-100">
                                             <div className="form-group">
-                                                <label for="exampleInputEmail1">Inquietudes acerca del Inmueble</label>
+                                                <label htmlfor="exampleInputEmail1">Inquietudes acerca del Inmueble</label>
                                                 <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
                                                 <small id="emailHelp" className="form-text text-muted">Max 256 palabras.</small>
                                             </div>                                       
