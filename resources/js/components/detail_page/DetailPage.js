@@ -82,16 +82,18 @@ export default class DetailPage extends Component {
 
                             <div className="row detail-p-tb">
                                 <div className="col">
-                                    <div className="row detail-title">CARACTERISTICAS</div>
-                                    <div className="row">Carasteristicas Content</div>
+                                    <div className="row detail-title">
+                                        <div className="row">CARACTERISTICAS</div>
+                                    </div>
+                                    <div className="row">Caracteristicas Content</div>
                                 </div>
                                 <div className="col">
                                     <div className="row detail-title">PREGUNTAS</div>
                                     <div className="row">
                                         <form className="w-100">
                                             <div className="form-group">
-                                                <label htmlfor="exampleInputEmail1">Inquietudes acerca del Inmueble</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+                                                <label htmlFor="exampleInputEmail1">Inquietudes acerca del Inmueble</label>
+                                                <textarea className="form-control" id="exampleFormControlTextarea1"></textarea>
                                                 <small id="emailHelp" className="form-text text-muted">Max 256 palabras.</small>
                                             </div>                                       
     
