@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import NavBar from '../index_page/NavBar';
-import ResultSection from '../search_page/ResultSection';
 import placeholder from '../../../img/placeholder.jpg';
 import StorageData from '../utils/StorageData';
 import DetailTitle from './DetailTitle';
+import SectionQuestion from './SectionQuestion';
 
 export default class DetailPage extends Component {
     constructor(props)
@@ -80,28 +80,7 @@ export default class DetailPage extends Component {
                                 </div>
                             </div>
 
-                            <div className="row detail-p-tb">
-                                <div className="col">
-                                    <div className="row detail-title">
-                                        <div className="row">CARACTERISTICAS</div>
-                                    </div>
-                                    <div className="row">Caracteristicas Content</div>
-                                </div>
-                                <div className="col">
-                                    <div className="row detail-title">PREGUNTAS</div>
-                                    <div className="row">
-                                        <form className="w-100">
-                                            <div className="form-group">
-                                                <label htmlFor="exampleInputEmail1">Inquietudes acerca del Inmueble</label>
-                                                <textarea className="form-control" id="exampleFormControlTextarea1"></textarea>
-                                                <small id="emailHelp" className="form-text text-muted">Max 256 palabras.</small>
-                                            </div>                                       
-    
-                                            <button type="submit" className="btn btn-primary">Enviar</button>                                        
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            <SectionQuestion />
 
                             <div className="row detail-p-tb">
                                 <div className="col">

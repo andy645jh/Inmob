@@ -22,10 +22,11 @@ class CreateEstateTable extends Migration
             $table->integer('rooms',2);            
             $table->integer('garage',2);
             $table->integer('parkin_lot',2);
-            $table->unsignedBigInteger('operation_type_id');
-            $table->unsignedBigInteger('estatus_type_id');
-            $table->foreign('operation_type_id')->references('id')->on('operation_type');
+            $table->integer('operation');
+            $table->unsignedBigInteger('estatus_type_id');            
+            $table->unsignedBigInteger('slide_imgs_id');            
             $table->foreign('estatus_type_id')->references('id')->on('estatus_type');
+            $table->foreign('slide_imgs_id')->references('id')->on('slide_imgs');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOperationTypeTable extends Migration
+class CreateSlideImgsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateOperationTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('operation_type', function (Blueprint $table) {
+        Schema::create('slide_imgs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->text('url');
+            $table->unsignedBigInteger('estate_id');
+            $table->foreign('estate_id')->references('id')->on('estates');            
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateOperationTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('operation_type');
+        Schema::dropIfExists('slide_imgs');
     }
 }

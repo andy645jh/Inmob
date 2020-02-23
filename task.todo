@@ -2,4 +2,12 @@ TODO
 [] Filtrar informacion de las EstateList en la SearchPage con los parametros recibidos desde IndexPage
 [] Diseñar pagina de detalle
 [] Mostrar informacion de detalle
-[] Obtener informacion de web services
+[] Obtener informacion de web services desde Laravel
+[x] Modificar informacion de mockable de departamentos por json local
+[] Investigar uso de Router
+[] Conectar todas las paginas entre si
+[] Implementar creacion de preguntas y respuestas
+[] Implementar filtros detallados
+[] Ordenar listas segun opcion
+[] Eliminar codigo no usado o comentado
+[] Optimizar cargas

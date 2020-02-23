@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EventsObserver from '../utils/EventsObserver';
+import departments from '../../../data/data';
 
 class SelectDepartamento extends Component {
     
@@ -14,29 +15,9 @@ class SelectDepartamento extends Component {
         this.onChange = this.onChange.bind(this);               
     }
 
-    componentDidMount() {
-        this.getCities();              
-    }
-
-    async getCities() {
-        if (! this.state.players) {
-            try {
-                this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/cities',
-                {
-                    
-                });
-                
-                const estatesJson = await response.json();                
-                console.log("SearchSection.Estates 0: ", estatesJson);
-                this.setState({ cities: estatesJson, isLoading: false});
-                
-            } catch (err) {
-                this.setState({ isLoading: false });
-                console.error(err);
-            }
-        }
-    }
+    componentDidMount() {                   
+        this.setState({ cities: departments, isLoading: false});
+    } 
 
     onChange(e)
     {
