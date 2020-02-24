@@ -17,16 +17,14 @@ class CreateEstateTable extends Migration
             $table->bigIncrements('id');
             $table->text('description');
             $table->integer('price');
-            $table->integer('admin_price');
-            $table->double('meters',10,2);    
-            $table->integer('rooms',2);            
-            $table->integer('garage',2);
-            $table->integer('parkin_lot',2);
+            $table->integer('admin_price');             
+            $table->integer('rooms');            
+            $table->boolean('garage');
+            $table->boolean('parkin_lot');
             $table->integer('operation');
-            $table->unsignedBigInteger('estatus_type_id');            
-            $table->unsignedBigInteger('slide_imgs_id');            
-            $table->foreign('estatus_type_id')->references('id')->on('estatus_type');
-            $table->foreign('slide_imgs_id')->references('id')->on('slide_imgs');
+            $table->double('meters',10,2);   
+            $table->unsignedBigInteger('estate_type_id');                        
+            $table->foreign('estate_type_id')->references('id')->on('estate_type');            
             $table->timestamps();
         });
     }

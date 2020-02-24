@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEstateType extends Migration
+class CreateEstateTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateEstateType extends Migration
     {
         Schema::create('estate_type', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->text("name");
             $table->timestamps();
         });
     }

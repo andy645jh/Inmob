@@ -11,31 +11,7 @@ class SelectOperation extends Component {
         };
 
         this.onChange = this.onChange.bind(this);               
-    }
-
-    componentDidMount() {
-        this.getEstatesTypes();              
-    }
-
-    async getEstatesTypes() {
-        if (! this.state.players) {
-            try {
-                this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/operation',
-                {
-                    
-                });
-                
-                const estatesJson = await response.json();                
-                console.log("SelectOperation.Estates 0: ", estatesJson);
-                this.setState({ operation: estatesJson.operation, isLoading: false});
-                
-            } catch (err) {
-                this.setState({ isLoading: false });
-                console.error(err);
-            }
-        }
-    }
+    }  
 
     onChange(e)
     {
@@ -44,22 +20,16 @@ class SelectOperation extends Component {
     }
     
     render()
-    {
-        const {isLoading, operation} = this.state;
-        const opts = operation != null ? this.createOpts(operation) : null;
-        
-        console.log("Default: ",this.state);
+    {        
         return (
-            <>
-                {isLoading && "Loading ..."}
-                {(!isLoading && opts != null) &&
-                    <div className="d-sm-inline d-xs-block">
-                        <select id="inputState" className="form-control" onChange={this.onChange}>
-                            <option defaultValue>{this.state.defaultVal}</option>
-                            {opts}
-                        </select>
-                    </div>
-                }
+            <>                
+                <div className="d-sm-inline d-xs-block">
+                    <select id="inputState" className="form-control" onChange={this.onChange}>
+                        <option defaultValue>{this.state.defaultVal}</option>
+                        <option value="0">VENTA</option>
+                        <option value="0">ARRIENDO</option>
+                    </select>
+                </div>                
             </>
         )
     }

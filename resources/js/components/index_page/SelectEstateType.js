@@ -21,14 +21,14 @@ class SelectEstateType extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/estates_type',
+                const response = await fetch('api/estate_types',
                 {
                     
                 });
                 
                 const estatesJson = await response.json();                
                 console.log("SelectEstateType.Estates 0: ", estatesJson);
-                this.setState({ estateTypes: estatesJson.estates_type, isLoading: false});
+                this.setState({ estateTypes: estatesJson, isLoading: false});
                 
             } catch (err) {
                 this.setState({ isLoading: false });

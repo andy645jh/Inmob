@@ -17,7 +17,7 @@ class CreateSlideImgsTable extends Migration
             $table->bigIncrements('id');
             $table->text('url');
             $table->unsignedBigInteger('estate_id');
-            $table->foreign('estate_id')->references('id')->on('estates');            
+            $table->foreign('estate_id')->references('id')->on('estate');            
             $table->timestamps();
         });
     }

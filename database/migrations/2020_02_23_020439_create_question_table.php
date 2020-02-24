@@ -18,7 +18,7 @@ class CreateQuestionTable extends Migration
             $table->text("content");
             $table->text("answer");
             $table->unsignedBigInteger('estate_id');
-            $table->foreign('estate_id')->references('id')->on('estates');
+            $table->foreign('estate_id')->references('id')->on('estate');
             $table->timestamps();
         });
     }

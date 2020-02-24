@@ -11,3 +11,17 @@ TODO
 [] Ordenar listas segun opcion
 [] Eliminar codigo no usado o comentado
 [] Optimizar cargas
+[] Crear web services en Laravel
+
+NOTES
+* Para reimportar bd correr el comando
+php artisan migrate:fresh --seed
+
+* Para correr aplicacion con actualizacion por cambio
+npm run watch
+
+* Para iniciar el servidor 
+php artisan serve
+
+* Al correr las migraciones fijarse el orden en el q se encuentrar 
+para no tener problemas con las relaciones
