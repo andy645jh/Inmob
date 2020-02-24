@@ -22,3 +22,9 @@ Route::get('estate_types/{id}', 'EstateTypesController@get');
 Route::post('estate_types/create', 'EstateTypesController@create');
 Route::put('estate_types/{id}', 'EstateTypesController@update');
 Route::delete('estate_types/{id}','EstateTypesController@delete');
+
+Route::get('estate', 'EstateController@getAll');
+Route::get('estate/{id}', 'EstateController@get');
+Route::post('estate/create', 'EstateController@create');
+Route::put('estate/{id}', 'EstateController@update');
+Route::delete('estate/{id}','EstateController@delete');

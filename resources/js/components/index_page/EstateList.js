@@ -19,16 +19,11 @@ class EstateList extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('https://demo9207076.mockable.io/estates',
-                {
-                    headers:{
-                        elkin_key: 'elkin_value'
-                    }
-                });
+                const response = await fetch('api/estate',{});
                 
                 const estatesJson = await response.json();                
                 //console.log("Estates 0: ", estatesJson);
-                this.setState({ estates: estatesJson.estates, isLoading: false});
+                this.setState({ estates: estatesJson, isLoading: false});
                 
             } catch (err) {
                 this.setState({ isLoading: false });
