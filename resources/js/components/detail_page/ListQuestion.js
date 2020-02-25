@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Enums from '../utils/Enums';
+import EventsObserver from '../utils/EventsObserver';
 
 class ListQuestion extends Component {
     
@@ -10,12 +12,22 @@ class ListQuestion extends Component {
             questions: [],
             isLoading: false
         };
+
+        this.callback = (data) => {
+            this.updateListQuestion();
+        };
+        EventsObserver.subscribe(Enums.ADD_QUESTION, this.callback);
     }    
 
     componentDidMount()
     {
         this.updateListQuestion();
     }    
+    
+    componentWillUnmount()
+    {
+        EventsObserver.unsubscribe(Enums.ADD_QUESTION, this.callback);
+    }
 
     async updateListQuestion()
     {
@@ -24,7 +36,7 @@ class ListQuestion extends Component {
             const response = await fetch('api/questions',{});            
             const res = await response.json();                
             console.log("Respuesta: ", res);
-            this.setState({ questions: res, isLoading: false});
+            this.setState({ questions: res, isLoading: false });            
             
         } catch (err) {
             this.setState({ isLoading: false });
@@ -45,7 +57,7 @@ class ListQuestion extends Component {
                             <div className="col">                             
                             {
                                 (!isLoading && questions!=null) && (questions.map(q => {
-                                    return (<div className="row" key={q.id}><p>Carasteristicas Content</p></div>);
+                                    return (<div className="row" key={q.id}><p>{q.content}</p></div>);
                                 }))                                                                                      
                             }
                             </div>                                        
