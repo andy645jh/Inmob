@@ -11,7 +11,10 @@ TODO
 [] Ordenar listas segun opcion
 [] Eliminar codigo no usado o comentado
 [] Optimizar cargas
-[] Crear web services en Laravel
+[x] Crear web services para Estate, EstateType, Question en Laravel
+[] Agregar evento al crear pregunta para q se actualice la lista
+[] Ajustar listado de preguntas con respuestas
+
 
 NOTES
 * Para reimportar bd correr el comando

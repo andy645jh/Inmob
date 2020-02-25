@@ -28,3 +28,9 @@ Route::get('estate/{id}', 'EstateController@get');
 Route::post('estate/create', 'EstateController@create');
 Route::put('estate/{id}', 'EstateController@update');
 Route::delete('estate/{id}','EstateController@delete');
+
+Route::get('questions', 'QuestionController@getAll');
+Route::get('question/{id}', 'QuestionController@get');
+Route::post('question/create', 'QuestionController@create');
+Route::put('question/{id}', 'QuestionController@update');
+Route::delete('question/{id}','QuestionController@delete');

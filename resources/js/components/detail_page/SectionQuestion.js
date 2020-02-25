@@ -16,22 +16,22 @@ class SectionQuestion extends Component {
     handleSubmit(event) 
     {
         event.preventDefault();
-        const data = new FormData(event.target);
-        console.log("sendQuestion: ",data);
+        var data = new FormData(event.target);
+        data.append('estate_id',this.props.id);        
         this.sendQuestion(data);
     }
 
     async sendQuestion(data)
     {
         try {            
-            const response = await fetch('https://demo9207076.mockable.io/questions',
+            const response = await fetch('api/question/create',
             {
                 method: 'POST',
-                body: data,
+                body: data                
             });
             
-            const estatesJson = await response;                
-            console.log("Estates 0: ", estatesJson);
+            const res = await response;                
+            console.log("Respuesta: ", res);
             //this.setState({ estate: this.getEstate(estatesJson.estates,this.id), isLoading: false});
             
         } catch (err) {
@@ -58,11 +58,11 @@ class SectionQuestion extends Component {
                         <div className="row">
                             <form className="w-100" onSubmit={this.handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="pregunta">Inquietudes acerca del Inmueble</label>
-                                    <textarea className="form-control" id="pregunta" name="pregunta"></textarea>
+                                    <label htmlFor="content">Inquietudes acerca del Inmueble</label>
+                                    <textarea className="form-control" id="content" name="content"></textarea>
                                     <small id="emailHelp" className="form-text text-muted">Max 256 palabras.</small>
                                 </div>                                       
-
+                                
                                 <button className="btn btn-primary">Enviar</button>                                        
                             </form>
                         </div>
