@@ -12,23 +12,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- var data = 'index';
 if (document.getElementById('name')) {
     var element = document.getElementById('name');
-    data = element.dataset.id;    
 }
 
-if(data === 'index')
-{
-    require('./components/index_page/IndexPage');
-}
-
-if(data === 'search')
-{
-    require('./components/search_page/SearchPage');
-}
-
-if(data === 'detail')
-{
-    require('./components/detail_page/DetailPage');
-}
+require('./components/index_page/Index');

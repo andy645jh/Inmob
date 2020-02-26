@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import placeholder from '../../../img/placeholder.jpg'; 
 import SearchSection from './SearchSection';
 import EstateList from './EstateList';
-import NavBar from './NavBar';
 
-export default class IndexPage extends Component {
+class IndexPage extends Component {
     constructor(props)
     {
         super(props); 
@@ -13,15 +11,12 @@ export default class IndexPage extends Component {
 
     render() {
         return (
-            <div className="container">     
-                <NavBar />
-
+            <div className="container"> 
                 <div className="banner row" style={{ height: 300 +'px' }}>
                     <img className="card-img-top" height="100%" src={placeholder} alt="placeholder"/>
                 </div>
 
-                <SearchSection />
-                
+                <SearchSection />                
                 <EstateList />
                 
             </div>
@@ -31,6 +26,4 @@ export default class IndexPage extends Component {
     
 }
 
-if (document.getElementById('page')) {
-    ReactDOM.render(<IndexPage />, document.getElementById('page'));
-}
+export default IndexPage

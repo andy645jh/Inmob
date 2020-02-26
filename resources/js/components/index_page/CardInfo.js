@@ -1,31 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
 import placeholder from '../../../img/placeholder.jpg'; // Tell Webpack this JS file uses this image
 import CardIconRow from './CardIconsRow';
 import StorageData from '../utils/StorageData';
+import { Link, withRouter, Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-function CardInfo({ id })
+class CardInfo extends Component
 {
-    function onClick()
-    {
-        StorageData.set("id", id);
-        location.href = "/detail";
+    
+    constructor(props) {
+        super(props);
+        //this.history = useHistory();
+        this.state = {
+            showDetail:false
+        }
     }
 
-    return(
-        <div className="card-info col-sm-3 col-md-4" onClick={onClick}>
-            <div className="card">
+    onClick (e) {
+        //this.history.push('/detail/1');
+        this.setState({showDetail:true});
+        console.log('/detail/1');        
+    }
+
+    render() {
+        
+        if (this.state.showDetail) {
+            return <Redirect to='/detail/1'/>
+        }
+        return (            
+            <div className="card-info col-sm-3 col-md-4" onClick={(e) => this.onClick(e)}>
+                <div className="card">
             
-                <div className="card-body">
-                    <h5 className="card-title">APTO {id}</h5>
-                    <img className="card-img-top" src={placeholder} alt="placeholder" />
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <div className="card-body">
+                        <h5 className="card-title">APTO {this.props.id}</h5>
+                        <img className="card-img-top" src={placeholder} alt="placeholder" />
+                        <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 
-                    <CardIconRow id={0} />
-                    <CardIconRow id={1} />
+                        <CardIconRow id={0} />
+                        <CardIconRow id={1} />
+                    </div>
                 </div>
-            </div>
-        </div>
-    )
+            </div>            
+        )
+    }
 }
 
-export default CardInfo
+export default CardInfo;

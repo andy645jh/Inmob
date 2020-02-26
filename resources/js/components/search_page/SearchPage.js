@@ -5,7 +5,7 @@ import NavBar from '../index_page/NavBar';
 import Accordion from './Accordion';
 import ResultSection from './ResultSection';
 
-export default class SearchPage extends Component {
+class SearchPage extends Component {
     constructor(props)
     {
         super(props); 
@@ -13,8 +13,7 @@ export default class SearchPage extends Component {
 
     render() {
         return (
-            <div className="container">     
-                <NavBar />             
+            <div className="container">  
                 <ResultSection />
                 <div className="row">
                     <div className="col-md-9">
@@ -33,6 +32,4 @@ export default class SearchPage extends Component {
     
 }
 
-if (document.getElementById('page')) {
-    ReactDOM.render(<SearchPage />, document.getElementById('page'));
-}
+export default SearchPage;

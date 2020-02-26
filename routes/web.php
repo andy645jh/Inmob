@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/search', function () {
-    return view('search');
+    return view('welcome');
 });
 
-Route::get('/detail', function () {
-    return view('detail');
-});
+Route::get('/detail/{id}', function () {
+    return view('welcome');
+});*/
+
+
+Route::view('/{path?}', 'welcome');

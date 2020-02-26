@@ -33,7 +33,7 @@ class ListQuestion extends Component {
     {
         try {            
             this.setState({ isLoading: true });
-            const response = await fetch('api/questions',{});            
+            const response = await fetch('../api/questions',{});            
             const res = await response.json();                
             console.log("Respuesta: ", res);
             this.setState({ questions: res, isLoading: false });            

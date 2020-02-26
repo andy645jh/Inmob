@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavBar = () => (
+const NavBar = () => (    
     <div className="row">
         <div className="col menu">                    
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -23,10 +23,11 @@ const NavBar = () => (
                         <a className="nav-link" href="#">Proyectos</a>
                     </li>
                     </ul>
-                </div>
+                </div>                            
             </nav>
         </div>
     </div>
+    
 )
 
 export default NavBar

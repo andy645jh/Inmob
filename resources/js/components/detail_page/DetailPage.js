@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import NavBar from '../index_page/NavBar';
 import placeholder from '../../../img/placeholder.jpg';
 import StorageData from '../utils/StorageData';
@@ -7,16 +6,17 @@ import DetailTitle from './DetailTitle';
 import SectionQuestion from './SectionQuestion';
 import ListQuestion from './ListQuestion';
 
-export default class DetailPage extends Component {
+class DetailPage extends Component {
     constructor(props)
-    {
-        super(props); 
+    {       
+        super(props);
         this.state = {
             estate: null,
             isLoading: null
         };
-
-        this.id = StorageData.get("id");
+        
+        this.id = props.match.params.id;
+        console.log("Match: ", this.id);
     }
 
     componentDidMount()
@@ -28,7 +28,7 @@ export default class DetailPage extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('api/estate/'+this.id,{});
+                const response = await fetch('../api/estate/'+this.id,{});
                 
                 const estatesJson = await response.json();                
                 //console.log("Estates 0: ", estatesJson);
@@ -45,9 +45,7 @@ export default class DetailPage extends Component {
         const { isLoading, estate } = this.state; 
         console.log("Estate: ",estate);
         return (
-            <div className="container">     
-                <NavBar />             
-                                
+            <div className="container">                                 
                 {isLoading && "Loading ... "}
                 <>
                     {
@@ -77,6 +75,4 @@ export default class DetailPage extends Component {
     
 }
 
-if (document.getElementById('page')) {
-    ReactDOM.render(<DetailPage />, document.getElementById('page'));
-}
+export default DetailPage;
