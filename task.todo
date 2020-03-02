@@ -2,19 +2,20 @@ TODO
 [] Filtrar informacion de las EstateList en la SearchPage con los parametros recibidos desde IndexPage
 [] Diseñar pagina de detalle
 [] Mostrar informacion de detalle
-[] Obtener informacion de web services desde Laravel
+[x] Obtener informacion de web services desde Laravel
 [x] Modificar informacion de mockable de departamentos por json local
-[] Investigar uso de Router
+[x] Investigar e implementar Router
 [] Conectar todas las paginas entre si
-[] Implementar creacion de preguntas y respuestas
+[x] Implementar creacion de preguntas y respuestas
 [] Implementar filtros detallados
 [] Ordenar listas segun opcion
 [] Eliminar codigo no usado o comentado
 [] Optimizar cargas
 [x] Crear web services para Estate, EstateType, Question en Laravel
-[] Agregar evento al crear pregunta para q se actualice la lista
+[x] Agregar evento al crear pregunta para q se actualice la lista
 [] Ajustar listado de preguntas con respuestas
-
+[] Agregar inicio de sesion
+[] Restringir entrada a ciertas paginas dependiendo del usuario
 
 NOTES
 * Para reimportar bd correr el comando
@@ -28,3 +29,20 @@ php artisan serve
 
 * Al correr las migraciones fijarse el orden en el q se encuentrar 
 para no tener problemas con las relaciones
+
+* Ejecutar
+composer update
+
+* Si el error es de popper
+npm install popper.js
+
+* Si el error es de jquery
+npm install jquery
+
+* Si el error es de boostrap
+npm install boostrap
+
+* Error de JWT, ejecutar comando y seleccionar Tymon\JWTAuth\Providers\LaravelServiceProvider
+php artisan vendor:publish
+
+* Ejecutar seeders
