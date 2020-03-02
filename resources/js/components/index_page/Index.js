@@ -18,12 +18,31 @@ export default class Index extends Component {
             user: {}
         };
     }
+    
+    componentDidMount() {
+        let state = localStorage["appState"];
+        if (state) {
+            let AppState = JSON.parse(state);
+            console.log(AppState);
+            this.setState({ isLoggedIn: AppState.isLoggedIn, user: AppState });
+        }
+    }
+    
+    logoutUser () {
+        let appState = {
+            isLoggedIn: false,
+            user: {}
+        };
+        // save app state with user date in local storage
+        localStorage["appState"] = JSON.stringify(appState);
+        this.setState(appState);
+    };
 
     render() {
         return (
             <Router>
                 <div className="container">     
-                    <NavBar />
+                    <NavBar isLoggedIn={this.state.isLoggedIn} logoutUser={() => this.logoutUser()}/>
                     <Switch>
                         <Route path='/' exact component={HomePage} />                
                         <Route path='/search' component={SearchPage} />                

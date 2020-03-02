@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import AuthBtn from '../orphans/AuthBtn';
 
-const NavBar = () => (    
+const NavBar = ({isLoggedIn, logoutUser}) => (    
     <div className="row">
         <div className="col menu">                    
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,7 +24,7 @@ const NavBar = () => (
                     </ul>
                 </div>   
                 <div className="col justify-content-end text-right">
-                    <AuthBtn />                    
+                    <AuthBtn isLoggedIn={isLoggedIn} logoutUser={logoutUser}/>                    
                 </div>                         
             </nav>
         </div>        

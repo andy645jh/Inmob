@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom';
 
 class LogInPage extends Component {
-    constructor() {
+    constructor({history}) {
         super();
         this.state = {
             email: '',
@@ -10,7 +10,7 @@ class LogInPage extends Component {
             error: [],
             isLoggedIn: false,
         }
-
+        console.log("History: ",history);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -76,6 +76,8 @@ class LogInPage extends Component {
                         isLoggedIn: appState.isLoggedIn,
                         user: appState.user
                     });
+
+
                 } else alert("Login Failed!");
 
                 $("#login-form button")
