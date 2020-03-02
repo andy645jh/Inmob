@@ -23,4 +23,7 @@ Route::get('/detail/{id}', function () {
 });*/
 
 
-Route::view('/{path?}', 'welcome');
+Route::get('/{path}', function()
+{
+    return view('welcome');
+})->where('path','.*');

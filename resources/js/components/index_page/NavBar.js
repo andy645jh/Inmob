@@ -1,4 +1,6 @@
 import React from 'react';
+import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import AuthBtn from '../orphans/AuthBtn';
 
 const NavBar = () => (    
     <div className="row">
@@ -11,21 +13,21 @@ const NavBar = () => (
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                     <li className="nav-item active">
-                        <a className="nav-link" href="/">Inicio <span className="sr-only">(current)</span></a>
+                        <Link className="nav-link" to="/">Inicio <span className="sr-only">(current)</span></Link>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/search">Search</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/detail">Detail</a>
-                    </li>
+                    <li className="nav-item">                        
+                        <Link className="nav-link" to="/search">Search</Link>
+                    </li>                    
                     <li className="nav-item">
                         <a className="nav-link" href="#">Proyectos</a>
                     </li>
                     </ul>
-                </div>                            
+                </div>   
+                <div className="col justify-content-end text-right">
+                    <AuthBtn />                    
+                </div>                         
             </nav>
-        </div>
+        </div>        
     </div>
     
 )

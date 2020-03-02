@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             [
                 EstateTypeTableSeeder::class, 
                 EstateTableSeeder::class, 
+                UsersTableSeeder::class,
             ]
         );
     }
