@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EventsObserver from '../utils/EventsObserver';
-import departments from '../../../data/data';
+import departments from '../../../json/data';
 
 class SelectDepartamento extends Component {
     

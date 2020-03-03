@@ -3,7 +3,7 @@ import placeholder from '../../../img/placeholder.jpg';
 import SearchSection from './SearchSection';
 import EstateList from './EstateList';
 
-class IndexPage extends Component {
+class HomePage extends Component {
     constructor(props)
     {
         super(props); 
@@ -26,4 +26,4 @@ class IndexPage extends Component {
     
 }
 
-export default IndexPage
+export default HomePage

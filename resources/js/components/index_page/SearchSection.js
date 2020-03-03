@@ -5,6 +5,7 @@ import SelectDepartamento from './SelectDepartamento';
 import SelectCiudad from './SelectCiudad';
 import SearchTypes from '../utils/Enums';
 import StorageData from '../utils/StorageData';
+import { connect } from 'react-redux';
 
 class SearchSection extends Component {
     constructor(props)
@@ -48,4 +49,18 @@ class SearchSection extends Component {
     }    
 }
 
-export default SearchSection
+const mapStateToProps = state => ({
+    searchSelections: state.searchSelections
+});
+
+const mapDispatchToProps = state => ({
+    departamentoSeleccionado(dep)
+    {
+        dispatch({
+            type: 'DEPARTAMENT_SELECCIONADO',
+            dep
+        });
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchSection);
