@@ -6,11 +6,13 @@ import SelectCiudad from './SelectCiudad';
 import SearchTypes from '../utils/Enums';
 import StorageData from '../utils/StorageData';
 import { connect } from 'react-redux';
+import departments from '../../../json/data';
 
 class SearchSection extends Component {
     constructor(props)
     {
-        super(props);        
+        super(props);  
+        console.log("SearchSection.Props: ",props);      
     }  
 
     onClick(e)
@@ -30,8 +32,8 @@ class SearchSection extends Component {
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
-                    <SelectDepartamento defaultVal="DEPARTAMENTO" type={SearchTypes.DEP} onChange={this.onChange} />
-                    <SelectCiudad defaultVal="CIUDAD" type={SearchTypes.CIT} onChange={this.onChange}/>
+                    <SelectDepartamento list={departments} defaultVal={this.props.searchSelections.departamento} type={SearchTypes.DEP} onChange={this.onChange} />
+                    <SelectCiudad list={departments} defaultVal={this.props.searchSelections.ciudad} type={SearchTypes.CIT} onChange={this.onChange}/>
                     <SelectOperation defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
                     <SelectEstateType defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
                          
@@ -57,7 +59,7 @@ const mapDispatchToProps = state => ({
     departamentoSeleccionado(dep)
     {
         dispatch({
-            type: 'DEPARTAMENT_SELECCIONADO',
+            type: 'DEPARTAMENTO_SELECCIONADO',
             dep
         });
     }

@@ -13,15 +13,24 @@ const reducerApp = (state = initialState, action) => {
             return {
                 ...state,
                 searchSelections: {
-                    departamento: state.searchSelections.departamento,
+                    departamento: action.dep,
                     ciudad: state.searchSelections.ciudad
+                }
+            }
+
+        case 'CIUDAD_SELECCIONADA':
+            return {
+                ...state,
+                searchSelections: {
+                    departamento: state.searchSelections.departamento,
+                    ciudad: action.ciudad
                 }
             }
         
         default:
             return state;
                 
-    }    
+    }   
 }
 
-export default createStore(reducerApp);
+export default createStore(reducerApp,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

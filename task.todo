@@ -46,3 +46,6 @@ npm install boostrap
 php artisan vendor:publish
 
 * Ejecutar seeders
+
+* Para instalar dependencias del package.json usar
+npm install
