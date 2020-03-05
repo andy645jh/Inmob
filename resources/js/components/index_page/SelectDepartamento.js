@@ -20,11 +20,8 @@ class SelectDepartamento extends Component {
     } 
 
     onChange(e)
-    {
-        console.log("SelectSearch.onChange: ",this.state.departments[e.target.value].ciudades);
-        this.props.onChange(e,this.props.type);
-        this.props.departamentoSeleccionado(e.target.value);
-        EventsObserver.broadcast("Test", this.state.departments[e.target.value].ciudades);
+    {        
+        this.props.departamentoSeleccionado(e.target.value);       
     }
     
     render()

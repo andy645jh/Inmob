@@ -7,6 +7,7 @@ class HomePage extends Component {
     constructor(props)
     {
         super(props); 
+        console.log("HomePage.Props: ",props);   
     }
 
     render() {
@@ -16,7 +17,7 @@ class HomePage extends Component {
                     <img className="card-img-top" height="100%" src={placeholder} alt="placeholder"/>
                 </div>
 
-                <SearchSection />                
+                <SearchSection {...this.props} />                
                 <EstateList />
                 
             </div>

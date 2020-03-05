@@ -15,19 +15,20 @@ class SelectCiudad extends Component {
 
         const unsubscribe = store.subscribe(() => {   
            
-            const searchSelections = store.getState().searchSelections;            
-            const list = this.props.list[searchSelections.departamento].ciudades;
-            var info = this.createOpts(list);
-            this.setState({cities : info});             
+            const searchSelections = store.getState().searchSelections;
+            console.log("dep: ",searchSelections.departamento); 
+            if(searchSelections.departamento!=='DEPARTAMENTO'){
+                const list = this.props.list[searchSelections.departamento].ciudades;
+                var info = this.createOpts(list);
+                this.setState({cities : info});  
+            }          
         });
                 
         this.onChange = this.onChange.bind(this);               
     }   
 
     onChange(e)
-    {
-        console.log("SelectSearch.onChange: ",this.state.cities[e.target.value].ciudades);
-        this.props.onChange(e,this.props.type);       
+    {       
         this.props.ciudadSeleccionada(e.target.value);
     }
     

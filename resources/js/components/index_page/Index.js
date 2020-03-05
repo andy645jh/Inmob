@@ -6,7 +6,7 @@ import DetailPage from '../detail_page/DetailPage';
 import LogInPage from '../orphans/LogInPage';
 import RegisterPage from '../orphans/RegisterPage';
 import HomePage from './HomePage';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, browserHistory  } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../data/Store';
 
@@ -42,7 +42,7 @@ export default class Index extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
+                <Router history={ browserHistory }>
                     <div className="container">
                         <NavBar isLoggedIn={this.state.isLoggedIn} logoutUser={() => this.logoutUser()} />
                         <Switch>

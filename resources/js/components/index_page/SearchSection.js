@@ -12,17 +12,18 @@ class SearchSection extends Component {
     constructor(props)
     {
         super(props);  
+        this.state = {
+            defaultDep: this.props.searchSelections.departamento,
+            defaultCiu: this.props.searchSelections.ciudad,
+            defaultOpe: this.props.searchSelections.operacion,
+            defaultTipo: this.props.searchSelections.tipoInmueble,
+        }
         console.log("SearchSection.Props: ",props);      
     }  
 
     onClick(e)
     {
-        location.href = "/hola";
-    }
-
-    onChange(e, data)
-    {                
-        StorageData.set(data, e.target.value);
+        this.props.history.push('/search');
     }
 
     render() {        
@@ -32,17 +33,17 @@ class SearchSection extends Component {
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
-                    <SelectDepartamento list={departments} defaultVal={this.props.searchSelections.departamento} type={SearchTypes.DEP} onChange={this.onChange} />
-                    <SelectCiudad list={departments} defaultVal={this.props.searchSelections.ciudad} type={SearchTypes.CIT} onChange={this.onChange}/>
-                    <SelectOperation defaultVal="OPERACION" type={SearchTypes.OPE} onChange={this.onChange}/>
-                    <SelectEstateType defaultVal="TIPO DE INMUEBLE" type={SearchTypes.INM} onChange={this.onChange}/>
+                    <SelectDepartamento list={departments} defaultVal={this.state.defaultDep}  />
+                    <SelectCiudad list={departments} defaultVal={this.state.defaultCiu}/>
+                    <SelectOperation defaultVal={this.state.defaultOpe} />
+                    <SelectEstateType defaultVal={this.state.defaultTipo} />
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           
                     </div> 
         
                     <div className="d-sm-inline d-xs-block">                            
-                        <button type="button" className="btn btn-primary" onClick={this.onClick}>Search</button>
+                        <button type="button" className="btn btn-primary" onClick={(e) => this.onClick(e)}>Search</button>
                     </div>                                                                  
                 </form>
             </div>            

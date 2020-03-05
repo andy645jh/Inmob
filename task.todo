@@ -11,6 +11,10 @@ TODO
 [] Ordenar listas segun opcion
 [] Eliminar codigo no usado o comentado
 [] Optimizar cargas
+[x] Implementar Redux para HomePage
+[] Implementar Redux para SearchPage
+[] Implementar Redux para DetailPage
+[] Prevenir perdida de informacion al usar F5
 [x] Crear web services para Estate, EstateType, Question en Laravel
 [x] Agregar evento al crear pregunta para q se actualice la lista
 [] Ajustar listado de preguntas con respuestas

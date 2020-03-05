@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class SelectOperation extends Component {
     
@@ -15,8 +16,9 @@ class SelectOperation extends Component {
 
     onChange(e)
     {
-        console.log("SelectOperation.onChange: ",this.state.operation[e.target.value]);
-        this.props.onChange(e,this.props.type);        
+        console.log("SelectOperation.onChange: ",e.target.value);
+        //this.props.onChange(e,this.props.type);    
+        this.props.operacionSeleccionada(e.target.value);    
     }
     
     render()
@@ -27,7 +29,7 @@ class SelectOperation extends Component {
                     <select id="inputState" className="form-control" onChange={this.onChange}>
                         <option defaultValue>{this.state.defaultVal}</option>
                         <option value="0">VENTA</option>
-                        <option value="0">ARRIENDO</option>
+                        <option value="1">ARRIENDO</option>
                     </select>
                 </div>                
             </>
@@ -45,5 +47,19 @@ class SelectOperation extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    searchSelections: state.searchSelections
+});
 
-export default SelectOperation
+const mapDispatchToProps = dispatch => ({
+    operacionSeleccionada(operacion)
+    {
+        dispatch({
+            type: 'OPERACION_SELECCIONADA',
+            operacion
+        });
+    }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectOperation);

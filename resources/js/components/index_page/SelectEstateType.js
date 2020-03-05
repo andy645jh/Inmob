@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class SelectEstateType extends Component {
     
@@ -21,11 +22,7 @@ class SelectEstateType extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('api/estate_types',
-                {
-                    
-                });
-                
+                const response = await fetch('api/estate_types');                
                 const estatesJson = await response.json();                
                 console.log("SelectEstateType.Estates 0: ", estatesJson);
                 this.setState({ estateTypes: estatesJson, isLoading: false});
@@ -40,7 +37,8 @@ class SelectEstateType extends Component {
     onChange(e)
     {
         console.log("SelectEstateType.onChange: ",this.state.estateTypes[e.target.value]);
-        this.props.onChange(e,this.props.type);        
+        //this.props.onChange(e,this.props.type);     
+        this.props.estateTypeSeleccionada(e.target.value);
     }
     
     render()
@@ -75,5 +73,18 @@ class SelectEstateType extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    searchSelections: state.searchSelections
+});
 
-export default SelectEstateType
+const mapDispatchToProps = dispatch => ({
+    estateTypeSeleccionada(tipoInmueble)
+    {
+        dispatch({
+            type: 'TIPO_INMUEBLE_SELECCIONADO',
+            tipoInmueble
+        });
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectEstateType);
