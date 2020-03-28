@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Debug from '../utils/Debug';
 
 class SelectEstateType extends Component {
     
@@ -15,7 +16,7 @@ class SelectEstateType extends Component {
     }
 
     componentDidMount() {
-        this.getEstatesTypes();              
+        this.getEstatesTypes();                      
     }
 
     async getEstatesTypes() {
@@ -24,7 +25,7 @@ class SelectEstateType extends Component {
                 this.setState({ isLoading: true });
                 const response = await fetch('api/estate_types');                
                 const estatesJson = await response.json();                
-                console.log("SelectEstateType.Estates 0: ", estatesJson);
+                Debug.Log("SelectEstateType.Estates 0: ", estatesJson);
                 this.setState({ estateTypes: estatesJson, isLoading: false});
                 
             } catch (err) {
@@ -36,7 +37,7 @@ class SelectEstateType extends Component {
 
     onChange(e)
     {
-        console.log("SelectEstateType.onChange: ",this.state.estateTypes[e.target.value]);
+        Debug.Log("SelectEstateType.onChange: ",this.state.estateTypes[e.target.value]);
         //this.props.onChange(e,this.props.type);     
         this.props.estateTypeSeleccionada(e.target.value);
     }
@@ -46,7 +47,7 @@ class SelectEstateType extends Component {
         const {isLoading, estateTypes} = this.state;
         const opts = estateTypes != null ? this.createOpts(estateTypes) : null;
         
-        console.log("Default: ",this.state);
+        Debug.Log("Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..."}

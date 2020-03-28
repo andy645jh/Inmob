@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Enums from '../utils/Enums';
 import FeatureSection from './FeatureSection';
 import EventsObserver from '../utils/EventsObserver';
-
+import TitleBlueBg from './TitleBlueBg';
 class SectionQuestion extends Component {
     
     constructor(props)
@@ -67,9 +67,7 @@ class SectionQuestion extends Component {
                 <div className="row detail-p-tb">
                     <FeatureSection />
                     <div className="col">
-                        <div className="row detail-title">
-                            <div className="col">PREGUNTAS</div>
-                        </div>
+                        <TitleBlueBg title="PREGUNTAS"/>                          
                         <div className="row">
                             <form className="w-100" onSubmit={this.handleSubmit}>
                                 <div className="form-group">

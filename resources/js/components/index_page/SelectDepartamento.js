@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import EventsObserver from '../utils/EventsObserver';
 import { connect } from 'react-redux';
+import Debug from '../utils/Debug';
 
 class SelectDepartamento extends Component {
     
@@ -29,7 +29,7 @@ class SelectDepartamento extends Component {
         const {isLoading, departments} = this.state;
         const opts = departments != null ? this.createOpts(departments) : null;
         
-        console.log("Default: ",this.state);
+        Debug.Log("Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..."}

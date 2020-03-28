@@ -3,10 +3,9 @@ import SelectEstateType from './SelectEstateType';
 import SelectOperation from './SelectOperation';
 import SelectDepartamento from './SelectDepartamento';
 import SelectCiudad from './SelectCiudad';
-import SearchTypes from '../utils/Enums';
-import StorageData from '../utils/StorageData';
 import { connect } from 'react-redux';
 import departments from '../../../json/data';
+import Debug from '../utils/Debug';
 
 class SearchSection extends Component {
     constructor(props)
@@ -18,7 +17,7 @@ class SearchSection extends Component {
             defaultOpe: this.props.searchSelections.operacion,
             defaultTipo: this.props.searchSelections.tipoInmueble,
         }
-        console.log("SearchSection.Props: ",props);      
+        Debug.Log("SearchSection.Props: ",props);      
     }  
 
     onClick(e)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Enums from '../utils/Enums';
 import EventsObserver from '../utils/EventsObserver';
+import TitleBlueBg from './TitleBlueBg';
 
 class ListQuestion extends Component {
     
@@ -52,7 +53,7 @@ class ListQuestion extends Component {
             <>                              
                 <div className="row detail-p-tb">
                     <div className="col">
-                        <div className="row detail-title">ULTIMAS PREGUNTAS</div>
+                        <TitleBlueBg title="ULTIMAS PREGUNTAS"/>                        
                         <div className="row">
                             <div className="col">                             
                             {

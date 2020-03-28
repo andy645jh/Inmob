@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Debug from '../utils/Debug';
 
 class SelectSearch extends Component {
     
@@ -27,7 +28,7 @@ class SelectSearch extends Component {
                 });
                 
                 const estatesJson = await response.json();                
-                console.log("SearchSection.Estates 0: ", estatesJson);
+                Debug.Log("SearchSection.Estates 0: ", estatesJson);
                 this.setState({ cities: estatesJson, isLoading: false});
                 
             } catch (err) {
@@ -39,7 +40,7 @@ class SelectSearch extends Component {
 
     onChange(e)
     {
-        console.log("SelectSearch.onChange: "+e.target.value);
+        Debug.Log("SelectSearch.onChange: "+e.target.value);
         this.props.onChange(e,this.props.type);
     }
     
@@ -48,7 +49,7 @@ class SelectSearch extends Component {
         const {isLoading, cities} = this.state;
         const opts = cities != null ? this.createOpts(cities) : null;
         
-        console.log("Default: ",this.state);
+        Debug.Log("Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..."}

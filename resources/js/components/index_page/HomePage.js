@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import placeholder from '../../../img/placeholder.jpg'; 
 import SearchSection from './SearchSection';
 import EstateList from './EstateList';
+import Debug from '../utils/Debug';
 
 class HomePage extends Component {
     constructor(props)
     {
         super(props); 
-        console.log("HomePage.Props: ",props);   
+        Debug.Log("HomePage.Props: ",props);   
     }
 
     render() {

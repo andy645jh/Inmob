@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import NavBar from '../index_page/NavBar';
 import placeholder from '../../../img/placeholder.jpg';
-import StorageData from '../utils/StorageData';
 import DetailTitle from './DetailTitle';
 import SectionQuestion from './SectionQuestion';
 import ListQuestion from './ListQuestion';
+import TitleBlueBg from './TitleBlueBg';                 
 
 class DetailPage extends Component {
     constructor(props)
@@ -55,8 +54,8 @@ class DetailPage extends Component {
                 
                             <div className="row detail-p-tb">
                                 <div className="col"><img src={placeholder} className="w-100" /></div>
-                                <div className="col">                                    
-                                    <div className="row detail-title blue">DESCRIPCION</div>
+                                <div className="col">   
+                                    <TitleBlueBg title="DESCRIPCION"/>                                                    
                                     <div className="row">Description Content</div>
                                     <div className="row">Iconos</div>
                                 </div>

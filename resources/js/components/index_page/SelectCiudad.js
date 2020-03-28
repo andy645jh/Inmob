@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import EventsObserver from '../utils/EventsObserver';
 import { connect } from 'react-redux';
 import store from '../../data/Store';
+import Debug from '../utils/Debug';
 
 class SelectCiudad extends Component {
     
@@ -16,7 +16,7 @@ class SelectCiudad extends Component {
         const unsubscribe = store.subscribe(() => {   
            
             const searchSelections = store.getState().searchSelections;
-            console.log("dep: ",searchSelections.departamento); 
+            Debug.Log("dep: ",searchSelections.departamento); 
             if(searchSelections.departamento!=='DEPARTAMENTO'){
                 const list = this.props.list[searchSelections.departamento].ciudades;
                 var info = this.createOpts(list);
@@ -36,7 +36,7 @@ class SelectCiudad extends Component {
     {
         const {isLoading, cities} = this.state;        
         
-        console.log("Default: ",this.state);
+        Debug.Log("Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..." }                

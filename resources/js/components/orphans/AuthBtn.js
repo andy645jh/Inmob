@@ -1,13 +1,15 @@
 import React from 'react';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import Debug from '../utils/Debug';
+
 const AuthBtn = ({isLoggedIn,logoutUser}) =>
 {     
     const test = (e)=>
     {
-        console.log("CLick Logout");
+        Debug.Log("CLick Logout");
         logoutUser();
     }
-    console.log("AuthBtn.isLoggedIn: "+isLoggedIn);
+    Debug.Log("AuthBtn.isLoggedIn: "+isLoggedIn);
     if(!isLoggedIn)
     {
         return <Link className="nav-link" to="/login">Log in</Link>;

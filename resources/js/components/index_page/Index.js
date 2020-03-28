@@ -9,6 +9,7 @@ import HomePage from './HomePage';
 import { BrowserRouter as Router, Switch, Route, browserHistory  } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../data/Store';
+import Debug from '../utils/Debug';
 
 export default class Index extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ export default class Index extends Component {
         let state = localStorage["appState"];
         if (state) {
             let AppState = JSON.parse(state);
-            console.log(AppState);
+            Debug.Log("Json: " , AppState);
             this.setState({ isLoggedIn: AppState.isLoggedIn, user: AppState });
         }
     }
