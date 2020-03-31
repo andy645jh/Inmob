@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../data/Store';
+import store from '../../data/store';
 import Debug from '../utils/Debug';
 
 class SelectCiudad extends Component {

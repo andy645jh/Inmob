@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import placeholder from '../../../img/placeholder.jpg'; // Tell Webpack this JS file uses this image
 import CardIconRow from './CardIconsRow';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class CardInfo extends Component
 {

@@ -27,7 +27,7 @@ class DetailPage extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('../api/estate/'+this.id,{});
+                const response = await fetch('http://localhost:8000/api/estate/'+this.id,{});
                 
                 const estatesJson = await response.json();                
                 //console.log("Estates 0: ", estatesJson);

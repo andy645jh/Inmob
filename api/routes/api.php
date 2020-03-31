@@ -25,22 +25,23 @@ Route::group(['middleware' => 'api-header'], function () {
 
     Route::post('user/login', 'UserController@login');
     Route::post('user/register', 'UserController@register');
+
+    Route::get('estate_types', 'EstateTypesController@getAll');
+    Route::get('estate_types/{id}', 'EstateTypesController@get');
+    Route::post('estate_types/create', 'EstateTypesController@create');
+    Route::put('estate_types/{id}', 'EstateTypesController@update');
+    Route::delete('estate_types/{id}','EstateTypesController@delete');
+
+    Route::get('estate', 'EstateController@getAll');
+    Route::get('estate/{id}', 'EstateController@get');
+    Route::post('estate/create', 'EstateController@create');
+    Route::put('estate/{id}', 'EstateController@update');
+    Route::delete('estate/{id}','EstateController@delete');
+
+    Route::get('questions', 'QuestionController@getAll');
+    Route::get('question/{id}', 'QuestionController@get');
+    Route::post('question/create', 'QuestionController@create');
+    Route::put('question/{id}', 'QuestionController@update');
+    Route::delete('question/{id}','QuestionController@delete');
 });
 
-Route::get('estate_types', 'EstateTypesController@getAll');
-Route::get('estate_types/{id}', 'EstateTypesController@get');
-Route::post('estate_types/create', 'EstateTypesController@create');
-Route::put('estate_types/{id}', 'EstateTypesController@update');
-Route::delete('estate_types/{id}','EstateTypesController@delete');
-
-Route::get('estate', 'EstateController@getAll');
-Route::get('estate/{id}', 'EstateController@get');
-Route::post('estate/create', 'EstateController@create');
-Route::put('estate/{id}', 'EstateController@update');
-Route::delete('estate/{id}','EstateController@delete');
-
-Route::get('questions', 'QuestionController@getAll');
-Route::get('question/{id}', 'QuestionController@get');
-Route::post('question/create', 'QuestionController@create');
-Route::put('question/{id}', 'QuestionController@update');
-Route::delete('question/{id}','QuestionController@delete');

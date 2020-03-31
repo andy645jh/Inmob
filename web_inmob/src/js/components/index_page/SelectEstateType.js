@@ -23,7 +23,7 @@ class SelectEstateType extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('api/estate_types');                
+                const response = await fetch('http://localhost:8000/api/estate_types');                
                 const estatesJson = await response.json();                
                 Debug.Log("SelectEstateType.Estates 0: ", estatesJson);
                 this.setState({ estateTypes: estatesJson, isLoading: false});

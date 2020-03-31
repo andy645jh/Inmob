@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route, Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import $ from 'jquery';
+import { axios } from 'axios';
 
 class LogInPage extends Component {
     constructor({history}) {
@@ -95,7 +97,7 @@ class LogInPage extends Component {
     render() {
         const isLoggedIn = this.state.isLoggedIn;
         console.log("isLoggedIn", isLoggedIn);
-        <div>Tets</div>
+        
         if (isLoggedIn) {
             return <Redirect to='/'/>
         }

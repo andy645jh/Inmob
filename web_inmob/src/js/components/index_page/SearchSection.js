@@ -55,7 +55,7 @@ const mapStateToProps = state => ({
     searchSelections: state.searchSelections
 });
 
-const mapDispatchToProps = state => ({
+const mapDispatchToProps = dispatch => ({
     departamentoSeleccionado(dep)
     {
         dispatch({

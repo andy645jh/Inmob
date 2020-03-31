@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import EstateList from '../index_page/EstateList';
-import NavBar from '../index_page/NavBar';
 import Accordion from './Accordion';
 import ResultSection from './ResultSection';
 

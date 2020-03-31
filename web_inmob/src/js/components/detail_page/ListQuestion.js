@@ -17,7 +17,7 @@ class ListQuestion extends Component {
         this.callback = (data) => {
             this.updateListQuestion();
         };
-        EventsObserver.subscribe(Enums.ADD_QUESTION, this.callback);
+        //EventsObserver.subscribe(Enums.ADD_QUESTION, this.callback);
     }    
 
     componentDidMount()
@@ -34,7 +34,7 @@ class ListQuestion extends Component {
     {
         try {            
             this.setState({ isLoading: true });
-            const response = await fetch('../api/questions',{});            
+            const response = await fetch('http://localhost:8000/api/questions',{});            
             const res = await response.json();                
             console.log("Respuesta: ", res);
             this.setState({ questions: res, isLoading: false });            

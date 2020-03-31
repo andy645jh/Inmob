@@ -23,7 +23,7 @@ Route::get('/detail/{id}', function () {
 });*/
 
 
-Route::get('/{path}', function()
+/*Route::get('/{path}', function()
 {
     return view('welcome');
-})->where('path','.*');
+})->where('path','.*');*/
