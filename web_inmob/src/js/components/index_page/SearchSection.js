@@ -22,7 +22,7 @@ class SearchSection extends Component {
     }  
 
     onClick(e)
-    {
+    {        
         this.props.history.push('/search');
     }
 

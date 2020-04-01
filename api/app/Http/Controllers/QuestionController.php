@@ -17,13 +17,13 @@ class QuestionController extends Controller
     {
         $question = new Question;
         $question->content = $request->content;            
-        $question->answer = $request->answer; 
+        $question->answer = is_null($request->answer) ? "" : $request->answer ; 
         $question->estate_id = $request->estate_id;                    
         $question->save();
-
+        
         return response()->json(
         [
-            "message" => "Question Type created"
+            "message" => "Question created"
         ], 201);
     
     }

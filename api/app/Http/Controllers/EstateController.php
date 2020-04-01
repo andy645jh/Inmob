@@ -16,6 +16,7 @@ class EstateController extends Controller
     public function create(Request $request) 
     {
         $estate = new Estate;
+        $estate->neighborhood = $request->neighborhood;            
         $estate->description = $request->description;            
         $estate->price = $request->price;            
         $estate->admin_price = $request->admin_price; 
@@ -49,6 +50,7 @@ class EstateController extends Controller
         if (Estate::where('id', $id)->exists()) 
         {
             $estate = Estate::find($id);
+            $estate->neighborhood = is_null($request->neighborhood) ? $estate->neighborhood : $request->neighborhood;            
             $estate->description = is_null($request->description) ? $estate->description : $request->description;            
             $estate->price = is_null($request->price) ? $estate->price : $request->price;            
             $estate->admin_price = is_null($request->admin_price) ? $estate->admin_price : $request->admin_price; 

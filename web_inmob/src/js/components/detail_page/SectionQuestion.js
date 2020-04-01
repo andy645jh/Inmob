@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Enums from '../utils/Enums';
 import FeatureSection from './FeatureSection';
-import EventsObserver from '../utils/EventsObserver';
 import TitleBlueBg from './TitleBlueBg';
+import QuestionService from '../../services/QuestionService';
+import Debug from '../utils/Debug';
 class SectionQuestion extends Component {
     
     constructor(props)
@@ -15,35 +15,31 @@ class SectionQuestion extends Component {
             words: 256
         };
 
+        this.questionServices = new QuestionService();
         this.handleSubmit = this.handleSubmit.bind(this);
     }    
 
     handleSubmit(event) 
     {        
         event.preventDefault();
-        
+        Debug.Log("Content: ", this.state.content);
+
         if (this.state.content !== "")
         {
-            var data = new FormData(event.target);
-            data.append('estate_id',this.props.id);        
+            var data = {
+                content: this.state.content,                
+                estate_id: this.props.id
+            };
+            
             this.sendQuestion(data);
         }        
     }
 
     async sendQuestion(data)
     {
-        try {            
-            const response = await fetch('api/question/create',
-            {
-                method: 'POST',
-                body: data                
-            });
-            
-            const res = await response;   
-            EventsObserver.broadcast(Enums.ADD_QUESTION, null);
-            this.setState({ content: "" });
-            console.log("Respuesta: ", res);
-            //this.setState({ estate: this.getEstate(estatesJson.estates,this.id), isLoading: false});
+        try {
+            const response = await this.questionServices.create(data);        
+            console.log("Respuesta: ", response);
             
         } catch (err) {
             this.setState({ isLoading: false });

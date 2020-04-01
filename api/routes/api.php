@@ -26,11 +26,11 @@ Route::group(['middleware' => 'api-header'], function () {
     Route::post('user/login', 'UserController@login');
     Route::post('user/register', 'UserController@register');
 
-    Route::get('estate_types', 'EstateTypesController@getAll');
-    Route::get('estate_types/{id}', 'EstateTypesController@get');
-    Route::post('estate_types/create', 'EstateTypesController@create');
-    Route::put('estate_types/{id}', 'EstateTypesController@update');
-    Route::delete('estate_types/{id}','EstateTypesController@delete');
+    Route::get('estate_type', 'EstateTypesController@getAll');
+    Route::get('estate_type/{id}', 'EstateTypesController@get');
+    Route::post('estate_type/create', 'EstateTypesController@create');
+    Route::put('estate_type/{id}', 'EstateTypesController@update');
+    Route::delete('estate_type/{id}','EstateTypesController@delete');
 
     Route::get('estate', 'EstateController@getAll');
     Route::get('estate/{id}', 'EstateController@get');
@@ -38,9 +38,9 @@ Route::group(['middleware' => 'api-header'], function () {
     Route::put('estate/{id}', 'EstateController@update');
     Route::delete('estate/{id}','EstateController@delete');
 
-    Route::get('questions', 'QuestionController@getAll');
+    Route::get('question', 'QuestionController@getAll');
     Route::get('question/{id}', 'QuestionController@get');
-    Route::post('question/create', 'QuestionController@create');
+    Route::put('question/create', 'QuestionController@create');
     Route::put('question/{id}', 'QuestionController@update');
     Route::delete('question/{id}','QuestionController@delete');
 });

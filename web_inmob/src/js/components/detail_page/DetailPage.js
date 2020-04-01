@@ -4,7 +4,7 @@ import DetailTitle from './DetailTitle';
 import SectionQuestion from './SectionQuestion';
 import ListQuestion from './ListQuestion';
 import TitleBlueBg from './TitleBlueBg';                 
-import EstateService from '../../services/EstateServices';
+import EstateService from '../../services/EstateService';
 import Debug from '../utils/Debug';
 import { SET_ESTATE } from '../../actions/ActionsDetailPage';
 import { connect } from 'react-redux';

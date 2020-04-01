@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Estate extends Model
 {
     protected $table = 'estate';
-    protected $fillable = [        
+    protected $fillable = [       
+        'neighborhood', 
         'description',
         'price',
         'admin_price',

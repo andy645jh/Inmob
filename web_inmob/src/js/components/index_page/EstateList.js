@@ -43,7 +43,7 @@ class EstateList extends Component {
             <section className="lista row">
             {
                 (!isLoading && estates!=null) && 
-                estates.map((estate) => <CardInfo key={estate.id} id={estate.id}/>)                  
+                estates.map((estate) => <CardInfo key={estate.id} id={estate.id} estateInfo={estate} />)                  
             }
             </section>   
             </>             

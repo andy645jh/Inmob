@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Enums from '../utils/Enums';
 import EventsObserver from '../utils/EventsObserver';
 import TitleBlueBg from './TitleBlueBg';
+import QuestionService from '../../services/QuestionService';
 
 class ListQuestion extends Component {
     
@@ -17,6 +18,8 @@ class ListQuestion extends Component {
         this.callback = (data) => {
             this.updateListQuestion();
         };
+
+        this.serviceQuestion = new QuestionService();
         //EventsObserver.subscribe(Enums.ADD_QUESTION, this.callback);
     }    
 
@@ -34,8 +37,8 @@ class ListQuestion extends Component {
     {
         try {            
             this.setState({ isLoading: true });
-            const response = await fetch('http://localhost:8000/api/questions',{});            
-            const res = await response.json();                
+            //const response = await fetch('http://localhost:8000/api/questions',{});            
+            const res = await this.serviceQuestion.getAll();                
             console.log("Respuesta: ", res);
             this.setState({ questions: res, isLoading: false });            
             
