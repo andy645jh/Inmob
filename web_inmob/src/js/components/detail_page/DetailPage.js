@@ -4,7 +4,7 @@ import DetailTitle from './DetailTitle';
 import SectionQuestion from './SectionQuestion';
 import ListQuestion from './ListQuestion';
 import TitleBlueBg from './TitleBlueBg';                 
-import EstateService from '../../services/EstateService';
+import Service from '../../services/Service';
 import Debug from '../utils/Debug';
 import { SET_ESTATE } from '../../actions/ActionsDetailPage';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ class DetailPage extends Component {
         };
         
         this.id = props.match.params.id;
-        this.serviceEstates = new EstateService();
+        this.serviceEstates = new Service('estate');
 
         Debug.Log("Match: ", this.id);
     }

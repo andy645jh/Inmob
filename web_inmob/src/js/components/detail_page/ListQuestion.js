@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Enums from '../utils/Enums';
 import EventsObserver from '../utils/EventsObserver';
 import TitleBlueBg from './TitleBlueBg';
-import QuestionService from '../../services/QuestionService';
+import Service from '../../services/Service';
 
 class ListQuestion extends Component {
     
@@ -19,8 +19,7 @@ class ListQuestion extends Component {
             this.updateListQuestion();
         };
 
-        this.serviceQuestion = new QuestionService();
-        //EventsObserver.subscribe(Enums.ADD_QUESTION, this.callback);
+        this.serviceQuestion = new Service('question');
     }    
 
     componentDidMount()

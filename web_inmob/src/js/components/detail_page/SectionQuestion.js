@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import FeatureSection from './FeatureSection';
 import TitleBlueBg from './TitleBlueBg';
-import QuestionService from '../../services/QuestionService';
+import Service from '../../services/Service';
 import Debug from '../utils/Debug';
+
 class SectionQuestion extends Component {
     
     constructor(props)
@@ -15,7 +16,7 @@ class SectionQuestion extends Component {
             words: 256
         };
 
-        this.questionServices = new QuestionService();
+        this.questionServices = new Service('question');
         this.handleSubmit = this.handleSubmit.bind(this);
     }    
 
