@@ -11,6 +11,7 @@ class SearchSection extends Component {
     constructor(props)
     {
         super(props);  
+        Debug.Log("SearchSection.Props: ",props); 
         this.state = {
             defaultDep: this.props.searchSelections.departamento,
             defaultCiu: this.props.searchSelections.ciudad,
@@ -52,7 +53,7 @@ class SearchSection extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchSelections: state.searchSelections
+    searchSelections: state.reducerIndexPage.searchSelections
 });
 
 const mapDispatchToProps = dispatch => ({

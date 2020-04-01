@@ -4,6 +4,10 @@ import DetailTitle from './DetailTitle';
 import SectionQuestion from './SectionQuestion';
 import ListQuestion from './ListQuestion';
 import TitleBlueBg from './TitleBlueBg';                 
+import EstateService from '../../services/EstateServices';
+import Debug from '../utils/Debug';
+import { SET_ESTATE } from '../../actions/ActionsDetailPage';
+import { connect } from 'react-redux';
 
 class DetailPage extends Component {
     constructor(props)
@@ -15,7 +19,9 @@ class DetailPage extends Component {
         };
         
         this.id = props.match.params.id;
-        console.log("Match: ", this.id);
+        this.serviceEstates = new EstateService();
+
+        Debug.Log("Match: ", this.id);
     }
 
     componentDidMount()
@@ -23,50 +29,52 @@ class DetailPage extends Component {
         this.processData();
     }
 
-    async processData() {
-        if (! this.state.players) {
-            try {
-                this.setState({ isLoading: true });
-                const response = await fetch('http://localhost:8000/api/estate/'+this.id,{});
-                
-                const estatesJson = await response.json();                
-                //console.log("Estates 0: ", estatesJson);
-                this.setState({ estate: estatesJson, isLoading: false});
-                
-            } catch (err) {
-                this.setState({ isLoading: false });
-                console.error(err);
+    async processData() {        
+        try {
+            this.setState({ isLoading: true });
+            
+            const estatesJson = await this.serviceEstates.get(this.id);
+            if(estatesJson.length>0)
+            {
+                Debug.Log(estatesJson[0]);
+                this.setState({ estate: estatesJson[0], isLoading: false});
+            }else{
+                Debug.Error("Los datos para el id "+this.id+" son nulos", estatesJson);
             }
-        }
+            
+        } catch (err) {
+            this.setState({ isLoading: false });
+            Debug.Error(err);
+        }        
     }  
 
     render() {
         const { isLoading, estate } = this.state; 
-        console.log("Estate: ",estate);
+        Debug.Log("Estate: ",estate);
         return (
             <div className="container">                                 
                 {isLoading && "Loading ... "}
-                <>
-                    {
-                        (!isLoading && estate!=null) && 
-                        (<>
-                            <DetailTitle title="RESULT" />
                 
-                            <div className="row detail-p-tb">
-                                <div className="col"><img src={placeholder} className="w-100" /></div>
-                                <div className="col">   
-                                    <TitleBlueBg title="DESCRIPCION"/>                                                    
-                                    <div className="row">Description Content</div>
-                                    <div className="row">Iconos</div>
-                                </div>
+                {
+                    (!isLoading && estate!=null) && 
+                    (<>
+                        <DetailTitle title="RESULT" />
+            
+                        <div className="row detail-p-tb">
+                            <div className="col"><img src={placeholder} className="w-100" /></div>
+                            <div className="col">   
+                                <TitleBlueBg title="DESCRIPCION"/>                                                    
+                                <div className="row">{estate.description}</div>
+                                <div className="row">Iconos</div>
                             </div>
+                        </div>
 
-                            <SectionQuestion id={this.id} />
+                        <SectionQuestion id={this.id} />
 
-                            <ListQuestion />
-                        </>)
-                    }
-                </>
+                        <ListQuestion />
+                    </>)
+                }
+                
             </div>
         );
     }
@@ -74,4 +82,18 @@ class DetailPage extends Component {
     
 }
 
-export default DetailPage;
+const mapStateToProps = state => ({
+    estate: state.estate
+});
+
+const mapDispatchToProps = dispatch => ({
+    setEstate(estate)
+    {
+        dispatch({
+            type: SET_ESTATE,
+            estate
+        });
+    }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DetailPage);

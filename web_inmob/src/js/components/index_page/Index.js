@@ -8,7 +8,7 @@ import RegisterPage from '../orphans/RegisterPage';
 import HomePage from './HomePage';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from '../../data/store';
+import store from '../../store';
 import Debug from '../utils/Debug';
 
 export default class Index extends Component {

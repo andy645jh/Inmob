@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import store from '../../data/store';
+import store from '../../store';
 import Debug from '../utils/Debug';
 
 class SelectCiudad extends Component {
@@ -12,10 +12,15 @@ class SelectCiudad extends Component {
             defaultVal: this.props.defaultVal,            
             cities: null
         };
+                
+        this.onChange = this.onChange.bind(this);               
+    }   
 
+    componentDidMount()
+    {
         const unsubscribe = store.subscribe(() => {   
            
-            const searchSelections = store.getState().searchSelections;
+            const searchSelections = store.getState().reducerIndexPage.searchSelections;
             Debug.Log("dep: ",searchSelections.departamento); 
             if(searchSelections.departamento!=='DEPARTAMENTO'){
                 const list = this.props.list[searchSelections.departamento].ciudades;
@@ -23,9 +28,7 @@ class SelectCiudad extends Component {
                 this.setState({cities : info});  
             }          
         });
-                
-        this.onChange = this.onChange.bind(this);               
-    }   
+    }
 
     onChange(e)
     {       

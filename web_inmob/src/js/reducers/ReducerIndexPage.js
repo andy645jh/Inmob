@@ -1,5 +1,3 @@
-import { createStore } from 'redux';
-
 const initialState = {
     searchSelections: {
         departamento: 'DEPARTAMENTO',
@@ -10,7 +8,7 @@ const initialState = {
     }
 }
 
-const reducerApp = (state = initialState, action) => {
+const reducerIndexPage = (state = initialState, action) => {
     switch (action.type) {
         case 'DEPARTAMENTO_SELECCIONADO':
             return {
@@ -62,4 +60,4 @@ const reducerApp = (state = initialState, action) => {
     }   
 }
 
-export default createStore(reducerApp,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export default reducerIndexPage;

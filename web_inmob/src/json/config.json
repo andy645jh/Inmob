@@ -1,3 +1,4 @@
 {
-    "useDebug":false
+    "useDebug":true,
+    "baseUrl": "http://localhost:8000/api/"
 }
