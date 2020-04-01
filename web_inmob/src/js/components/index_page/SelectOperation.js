@@ -5,11 +5,7 @@ class SelectOperation extends Component {
     
     constructor(props)
     {
-        super(props); 
-        this.state = {            
-            defaultVal: this.props.defaultVal,            
-            operation: null
-        };
+        super(props);      
 
         this.onChange = this.onChange.bind(this);               
     }  
@@ -22,12 +18,12 @@ class SelectOperation extends Component {
     }
     
     render()
-    {        
+    {
+        const selected = this.props.searchSelections.operacion;
         return (
             <>                
                 <div className="d-sm-inline d-xs-block">
-                    <select id="inputState" className="form-control" onChange={this.onChange}>
-                        <option defaultValue>{this.state.defaultVal}</option>
+                    <select value={selected} id="inputState" className="form-control" onChange={this.onChange}>                        
                         <option value="0">VENTA</option>
                         <option value="1">ARRIENDO</option>
                     </select>
@@ -48,7 +44,7 @@ class SelectOperation extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchSelections: state.searchSelections
+    searchSelections: state.reducerIndexPage.searchSelections
 });
 
 const mapDispatchToProps = dispatch => ({

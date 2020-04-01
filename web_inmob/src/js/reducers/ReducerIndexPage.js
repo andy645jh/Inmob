@@ -1,11 +1,12 @@
 const initialState = {
     searchSelections: {
-        departamento: 'DEPARTAMENTO',
-        ciudad: 'CIUDAD',
-        operacion: 'OPERACION',
-        tipoInmueble: 'TIPO INMUEBLE',
+        departamento: 0,
+        ciudad: 0,
+        operacion: 0,
+        tipoInmueble: 0,
         palabra: ''    
-    }
+    },
+    departaments: []
 }
 
 const reducerIndexPage = (state = initialState, action) => {
@@ -54,6 +55,13 @@ const reducerIndexPage = (state = initialState, action) => {
                     palabra: action.palabra,                    
                 }
             }
+
+        case 'SET_DEPARTAMENTOS':
+            return {
+                ...state,                
+                departaments: action.departaments
+            }
+
         default:
             return state;
                 

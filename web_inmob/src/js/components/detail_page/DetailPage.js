@@ -71,7 +71,7 @@ class DetailPage extends Component {
 
                         <SectionQuestion id={this.id} />
 
-                        <ListQuestion />
+                        <ListQuestion id={this.id} />
                     </>)
                 }
                 
@@ -83,7 +83,7 @@ class DetailPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    estate: state.estate
+    estate: state.reducerDetailPage.estate
 });
 
 const mapDispatchToProps = dispatch => ({

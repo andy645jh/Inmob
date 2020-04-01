@@ -38,7 +38,7 @@ class ListQuestion extends Component {
         try {            
             this.setState({ isLoading: true });
             //const response = await fetch('http://localhost:8000/api/questions',{});            
-            const res = await this.serviceQuestion.getAll();                
+            const res = await this.serviceQuestion.getAllByParentId(this.props.id);                
             console.log("Respuesta: ", res);
             this.setState({ questions: res, isLoading: false });            
             

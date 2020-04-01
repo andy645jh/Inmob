@@ -28,6 +28,17 @@ class QuestionController extends Controller
     
     }
 
+    public function getByParent($id) {
+        if (Question::where('estate_id', $id)->exists()) {
+            $question = Question::where('estate_id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+            return response($question, 200);
+        } else {
+        return response()->json([
+            "message" => "Question Not found by id ".$id
+        ], 404);
+        }
+    }
+
     public function get($id) {
         if (Question::where('id', $id)->exists()) {
             $question = Question::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);

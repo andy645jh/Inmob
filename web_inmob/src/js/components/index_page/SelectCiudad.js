@@ -7,27 +7,37 @@ class SelectCiudad extends Component {
     
     constructor(props)
     {
-        super(props); 
-        this.state = {            
-            defaultVal: this.props.defaultVal,            
-            cities: null
-        };
-                
+        super(props);  
+        this.state = {
+            isLoading:true
+        }
+
+        this.cities = [];
         this.onChange = this.onChange.bind(this);               
     }   
 
     componentDidMount()
     {
+        
+        const searchSelections = store.getState().reducerIndexPage.searchSelections;
+        this.departamento = searchSelections.departamento;   
+        const list = this.props.list[searchSelections.departamento].ciudades;                        
+        this.cities = this.createOpts(list); 
+        this.setState({isLoading:false});
+
         const unsubscribe = store.subscribe(() => {   
            
             const searchSelections = store.getState().reducerIndexPage.searchSelections;
-            Debug.Log("dep: ",searchSelections.departamento); 
-            if(searchSelections.departamento!=='DEPARTAMENTO'){
+                        
+            if(searchSelections.departamento!==this.departamento){
                 const list = this.props.list[searchSelections.departamento].ciudades;
-                var info = this.createOpts(list);
-                this.setState({cities : info});  
+                this.departamento = searchSelections.departamento;
+                this.props.ciudadSeleccionada(0);
+                this.cities = this.createOpts(list);                
             }          
         });
+
+          
     }
 
     onChange(e)
@@ -36,17 +46,15 @@ class SelectCiudad extends Component {
     }
     
     render()
-    {
-        const {isLoading, cities} = this.state;        
-        
+    {           
+        const selected = this.props.searchSelections.ciudad;
         Debug.Log("Default: ",this.state);
         return (
             <>
-                {isLoading && "Loading ..." }                
+                {this.cities == null && "Loading ..." }                
                 <div className="d-sm-inline d-xs-block">
-                    <select id="inputState" className="form-control" onChange={this.onChange}>
-                        <option defaultValue>{this.state.defaultVal}</option>
-                        {(!isLoading && cities != null) && cities}
+                    <select id="inputState" className="form-control" onChange={this.onChange} value={selected}>                        
+                        {(this.cities != null) && this.cities}
                     </select>
                 </div>                
             </>
@@ -65,7 +73,7 @@ class SelectCiudad extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchSelections: state.searchSelections
+    searchSelections: state.reducerIndexPage.searchSelections
 });
 
 const mapDispatchToProps = dispatch => ({

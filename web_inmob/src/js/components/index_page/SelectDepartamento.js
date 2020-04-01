@@ -7,16 +7,16 @@ class SelectDepartamento extends Component {
     constructor(props)
     {
         super(props); 
-        this.state = {            
-            defaultVal: this.props.defaultVal,            
+        this.state = {                        
             departments: props.list
         };
 
-        this.onChange = this.onChange.bind(this);               
+        this.onChange = this.onChange.bind(this);         
     }
 
-    componentDidMount() {                   
-        //this.setState({ cities: departments, isLoading: false});
+    componentDidMount() { 
+        this.opts = this.state.departments != null ? this.createOpts(this.state.departments) : null;            
+        this.setState({isLoading:false});
     } 
 
     onChange(e)
@@ -26,18 +26,16 @@ class SelectDepartamento extends Component {
     
     render()
     {
-        const {isLoading, departments} = this.state;
-        const opts = departments != null ? this.createOpts(departments) : null;
-        
-        Debug.Log("Default: ",this.state);
+        const selected = this.props.searchSelections.departamento;
+        const {isLoading} = this.state;  
+       
         return (
             <>
                 {isLoading && "Loading ..."}
-                {(!isLoading && opts != null) &&
+                {(!isLoading && this.opts != null) &&
                     <div className="d-sm-inline d-xs-block">
-                        <select id="inputState" className="form-control" onChange={this.onChange}>
-                            <option defaultValue>{this.state.defaultVal}</option>
-                            {opts}
+                        <select id="inputState" className="form-control" onChange={this.onChange} value={selected}>                            
+                            {this.opts}
                         </select>
                     </div>
                 }
@@ -57,7 +55,7 @@ class SelectDepartamento extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchSelections: state.searchSelections
+    searchSelections: state.reducerIndexPage.searchSelections
 });
 
 const mapDispatchToProps = dispatch => ({

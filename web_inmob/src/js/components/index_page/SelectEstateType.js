@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Debug from '../utils/Debug';
+import Service from '../../services/Service';
 
 class SelectEstateType extends Component {
     
@@ -8,10 +9,12 @@ class SelectEstateType extends Component {
     {
         super(props); 
         this.state = {            
-            defaultVal: this.props.defaultVal,            
-            estateTypes: null
+            isLoading: true
         };
 
+        this.estateTypes = [];
+        this.opts = [];
+        this.service = new Service("estate_type");
         this.onChange = this.onChange.bind(this);               
     }
 
@@ -23,39 +26,39 @@ class SelectEstateType extends Component {
         if (! this.state.players) {
             try {
                 this.setState({ isLoading: true });
-                const response = await fetch('http://localhost:8000/api/estate_types');                
-                const estatesJson = await response.json();                
+                const estatesJson = await this.service.getAll();                
                 Debug.Log("SelectEstateType.Estates 0: ", estatesJson);
-                this.setState({ estateTypes: estatesJson, isLoading: false});
+                this.estateTypes = estatesJson;
+                this.opts = estatesJson != null ? this.createOpts(estatesJson) : null;                
                 
-            } catch (err) {
-                this.setState({ isLoading: false });
+            } catch (err) {                
                 console.error(err);
             }
+
+            this.setState({ isLoading: false});
         }
     }
 
     onChange(e)
     {
-        Debug.Log("SelectEstateType.onChange: ",this.state.estateTypes[e.target.value]);
+        Debug.Log("SelectEstateType.onChange: ",this.estateTypes[e.target.value]);
         //this.props.onChange(e,this.props.type);     
         this.props.estateTypeSeleccionada(e.target.value);
     }
     
     render()
     {
-        const {isLoading, estateTypes} = this.state;
-        const opts = estateTypes != null ? this.createOpts(estateTypes) : null;
+        const {isLoading} = this.state;
+        const selected = this.props.searchSelections.tipoInmueble;
         
         Debug.Log("Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..."}
-                {(!isLoading && opts != null) &&
+                {(!isLoading && this.opts != null) &&
                     <div className="d-sm-inline d-xs-block">
-                        <select id="inputState" className="form-control" onChange={this.onChange}>
-                            <option defaultValue>{this.state.defaultVal}</option>
-                            {opts}
+                        <select id="inputState" className="form-control" onChange={this.onChange} value={selected}>                            
+                            {this.opts}
                         </select>
                     </div>
                 }
@@ -63,11 +66,11 @@ class SelectEstateType extends Component {
         )
     }
 
-    createOpts()
+    createOpts(estateTypes)
     {
         var arrTen = [];
-        for (var k = 0; k < this.state.estateTypes.length; k++) {
-            var opt = this.state.estateTypes[k];
+        for (var k = 0; k < estateTypes.length; k++) {
+            var opt = estateTypes[k];
             arrTen.push(<option key={opt.id} value={opt.id}>{opt.name}</option>);
         }
         return arrTen;
@@ -75,7 +78,7 @@ class SelectEstateType extends Component {
 }
 
 const mapStateToProps = state => ({
-    searchSelections: state.searchSelections
+    searchSelections: state.reducerIndexPage.searchSelections
 });
 
 const mapDispatchToProps = dispatch => ({

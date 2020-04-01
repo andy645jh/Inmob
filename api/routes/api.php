@@ -39,6 +39,7 @@ Route::group(['middleware' => 'api-header'], function () {
     Route::delete('estate/{id}','EstateController@delete');
 
     Route::get('question', 'QuestionController@getAll');
+    Route::get('{id}/question', 'QuestionController@getByParent');
     Route::get('question/{id}', 'QuestionController@get');
     Route::put('question/create', 'QuestionController@create');
     Route::put('question/{id}', 'QuestionController@update');

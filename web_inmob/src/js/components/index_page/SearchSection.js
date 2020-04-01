@@ -8,18 +8,7 @@ import departments from '../../../json/data';
 import Debug from '../utils/Debug';
 
 class SearchSection extends Component {
-    constructor(props)
-    {
-        super(props);  
-        Debug.Log("SearchSection.Props: ",props); 
-        this.state = {
-            defaultDep: this.props.searchSelections.departamento,
-            defaultCiu: this.props.searchSelections.ciudad,
-            defaultOpe: this.props.searchSelections.operacion,
-            defaultTipo: this.props.searchSelections.tipoInmueble,
-        }
-        Debug.Log("SearchSection.Props: ",props);      
-    }  
+   
 
     onClick(e)
     {        
@@ -33,10 +22,10 @@ class SearchSection extends Component {
             <div className="form-row mt-3 mb-3">
                 <form className="w-100 d-sm-flex align-items-center justify-content-around"> 
                 
-                    <SelectDepartamento list={departments} defaultVal={this.state.defaultDep}  />
-                    <SelectCiudad list={departments} defaultVal={this.state.defaultCiu}/>
-                    <SelectOperation defaultVal={this.state.defaultOpe} />
-                    <SelectEstateType defaultVal={this.state.defaultTipo} />
+                    <SelectDepartamento list={departments} />
+                    <SelectCiudad list={departments} />
+                    <SelectOperation />
+                    <SelectEstateType />
                          
                     <div className="d-sm-inline d-xs-block">                            
                         <input id="inputState" className="form-control" placeholder="Ejem. Garage"/>                                                           

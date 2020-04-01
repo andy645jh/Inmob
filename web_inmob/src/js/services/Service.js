@@ -1,12 +1,13 @@
 import { baseUrl } from '../../json/config.json';
 
-export default class QuestionService 
+export default class Service 
 {
-    constructor()
+    constructor(entity)
     {
-        this.entity = "question/";
+        this.entity = entity + "/";
     }
 
+    // format from api: localhost:8000/entity/
     async getAll() {
         try {
             const response = await fetch(baseUrl + this.entity);
@@ -18,6 +19,8 @@ export default class QuestionService
         }
     }
 
+    // format from api: localhost:8000/{id}/entity/
+    // id : Parent Id 
     async getAllByParentId(id) {
         try {
             const response = await fetch(baseUrl + id +"/" + this.entity);
@@ -29,6 +32,8 @@ export default class QuestionService
         }
     }
 
+    // format from api: localhost:8000/entity/{id}
+    // id : Entity Id 
     async get(id) {
         return fetch(baseUrl + this.entity + id, {
             method: 'GET'
@@ -44,6 +49,8 @@ export default class QuestionService
             });
     }
 
+    // format from api: localhost:8000/entity/create
+    // model : Entity data 
     async create(model) {
         return fetch(baseUrl + this.entity + 'create', {
             method: "PUT",
@@ -63,6 +70,8 @@ export default class QuestionService
             });
     }
 
+    // format from api: localhost:8000/entity/{id}
+    // id : Entity Id 
     async delete(id) {
         return fetch(baseUrl + this.entity + id, {
             method: "DELETE",
@@ -78,6 +87,8 @@ export default class QuestionService
             });
     }
 
+    // format from api: localhost:8000/entity/{id}
+    // model : Entity data 
     async update(model) {
         return fetch(baseUrl + this.entity + model.id, {
             method: "PUT",
