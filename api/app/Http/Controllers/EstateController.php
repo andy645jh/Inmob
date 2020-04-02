@@ -35,6 +35,16 @@ class EstateController extends Controller
     
     }
 
+
+    public function search($word)
+    {
+        $result = Estate::where('description', 'like', "%$word%")
+                        ->orWhere('neighborhood', 'like', "%$word%")
+                        ->get();
+                        
+        return response($result, 200);
+    }
+
     public function get($id) {
         if (Estate::where('id', $id)->exists()) {
             $estate = Estate::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);

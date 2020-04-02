@@ -33,6 +33,7 @@ Route::group(['middleware' => 'api-header'], function () {
     Route::delete('estate_type/{id}','EstateTypesController@delete');
 
     Route::get('estate', 'EstateController@getAll');
+    Route::get('estate/search/{word}', 'EstateController@search');
     Route::get('estate/{id}', 'EstateController@get');
     Route::post('estate/create', 'EstateController@create');
     Route::put('estate/{id}', 'EstateController@update');

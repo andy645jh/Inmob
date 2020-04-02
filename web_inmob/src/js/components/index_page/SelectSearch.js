@@ -49,7 +49,7 @@ class SelectSearch extends Component {
         const {isLoading, cities} = this.state;
         const opts = cities != null ? this.createOpts(cities) : null;
         
-        Debug.Log("Default: ",this.state);
+        Debug.Log("SelectSearch.Default: ",this.state);
         return (
             <>
                 {isLoading && "Loading ..."}

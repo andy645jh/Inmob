@@ -48,7 +48,7 @@ class SelectCiudad extends Component {
     render()
     {           
         const selected = this.props.searchSelections.ciudad;
-        Debug.Log("Default: ",this.state);
+        Debug.Log("SelectCiudad.Default: ",this.state);
         return (
             <>
                 {this.cities == null && "Loading ..." }                

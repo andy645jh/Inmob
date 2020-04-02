@@ -5,8 +5,7 @@ const initialState = {
         operacion: 0,
         tipoInmueble: 0,
         palabra: ''    
-    },
-    departaments: []
+    }
 }
 
 const reducerIndexPage = (state = initialState, action) => {

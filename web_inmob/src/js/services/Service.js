@@ -34,6 +34,23 @@ export default class Service
 
     // format from api: localhost:8000/entity/{id}
     // id : Entity Id 
+    async search(word) {
+        return fetch(baseUrl + this.entity + 'search/' + word, {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    this.handleResponseError(response);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                this.handleError(error);
+            });
+    }
+
+    // format from api: localhost:8000/entity/{id}
+    // id : Entity Id 
     async get(id) {
         return fetch(baseUrl + this.entity + id, {
             method: 'GET'

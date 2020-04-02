@@ -15,7 +15,7 @@ class SearchPage extends Component {
                 <ResultSection />
                 <div className="row">
                     <div className="col-md-9">
-                        <EstateList />
+                        <EstateList isFiltered={true} />
                     </div>
 
                     <div className="col-md-3">                    
