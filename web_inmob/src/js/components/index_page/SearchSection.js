@@ -8,12 +8,8 @@ import departments from '../../../json/data';
 import Debug from '../utils/Debug';
 import store from '../../store';
 
-class SearchSection extends Component {
-   
-    constructor(props)
-    {
-        super(props);
-    }   
+class SearchSection extends Component 
+{
 
     onChange(e)
     {        

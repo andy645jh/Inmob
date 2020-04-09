@@ -19,10 +19,10 @@ class EstateController extends Controller
         $estate->neighborhood = $request->neighborhood;            
         $estate->description = $request->description;            
         $estate->price = $request->price;            
-        $estate->admin_price = $request->admin_price; 
-        $estate->rooms = $request->rooms; 
-        $estate->garage = $request->garage; 
-        $estate->parkin_lot = $request->parkin_lot; 
+        $estate->admin_price = is_null($request->adminPrice) ? 0 : $request->adminPrice; 
+        $estate->rooms = is_null($request->rooms) ? 0 : $request->rooms; 
+        $estate->garage = $request->hasGarage; 
+        $estate->parkin_lot = $request->hasParkinLot; 
         $estate->operation = $request->operation; 
         $estate->meters = $request->meters; 
         $estate->estate_type_id = $request->estate_type_id;                    
@@ -30,7 +30,8 @@ class EstateController extends Controller
 
         return response()->json(
         [
-            "message" => "Estate Type created"
+            "message" => "Estate was created"
+            //"message" => $request->all()
         ], 201);
     
     }
@@ -63,10 +64,10 @@ class EstateController extends Controller
             $estate->neighborhood = is_null($request->neighborhood) ? $estate->neighborhood : $request->neighborhood;            
             $estate->description = is_null($request->description) ? $estate->description : $request->description;            
             $estate->price = is_null($request->price) ? $estate->price : $request->price;            
-            $estate->admin_price = is_null($request->admin_price) ? $estate->admin_price : $request->admin_price; 
+            $estate->admin_price = is_null($request->adminPrice) ? $estate->admin_price : $request->adminPrice; 
             $estate->rooms = is_null($request->rooms) ? $estate->rooms : $request->rooms; 
-            $estate->garage = is_null($request->garage) ? $estate->garage : $request->garage; 
-            $estate->parkin_lot = is_null($request->parkin_lot) ? $estate->parkin_lot : $request->parkin_lot; 
+            $estate->garage = is_null($request->hasGarage) ? $estate->garage : $request->hasGarage; 
+            $estate->parkin_lot = is_null($request->hasParkinLot) ? $estate->parkin_lot : $request->hasParkinLot; 
             $estate->operation = is_null($request->operation) ? $estate->operation : $request->operation; 
             $estate->meters = is_null($request->meters) ? $estate->meters : $request->meters; 
             $estate->estate_type_id = is_null($request->estate_type_id) ? $estate->estate_type_id : $request->estate_type_id; 

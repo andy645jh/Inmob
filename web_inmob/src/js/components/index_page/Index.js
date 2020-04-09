@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../../store';
 import Debug from '../utils/Debug';
+import EstatePage from '../estate_page/EstatePage';
 
 export default class Index extends Component {
     constructor(props) {
@@ -52,6 +53,7 @@ export default class Index extends Component {
                             <Route path='/detail/:id' exact component={DetailPage} />
                             <Route path='/login' exact component={LogInPage} />
                             <Route path='/register' exact component={RegisterPage} />
+                            <Route path='/estate' exact component={EstatePage} />
                         </Switch>
                     </div>
                 </Router>

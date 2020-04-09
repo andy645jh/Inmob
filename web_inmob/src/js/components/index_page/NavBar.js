@@ -21,6 +21,9 @@ const NavBar = ({isLoggedIn, logoutUser}) => (
                     <li className="nav-item">
                         <a className="nav-link" href="#">Proyectos</a>
                     </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/estate">Estate</Link>
+                    </li>
                     </ul>
                 </div>   
                 <div className="col justify-content-end text-right">
