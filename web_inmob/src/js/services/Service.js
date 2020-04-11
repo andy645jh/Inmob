@@ -23,7 +23,7 @@ export default class Service
     // id : Parent Id 
     async getAllByParentId(id) {
         try {
-            const response = await fetch(baseUrl + id +"/" + this.entity);
+            const response = await fetch(baseUrl + id + "/" + this.entity);
             const dataJson = await response.json();            
             return dataJson;
 

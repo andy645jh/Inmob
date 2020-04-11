@@ -1,9 +1,4 @@
-const Enums = {
-    DEP: 'dep',
-    CIT: 'cit',
-    OPE: 'ope',
-    INM: 'inm',
-    SELECT_DEP: "SELECT_DEP",
-    ADD_QUESTION: "ADD_QUESTION"
-}
-export default Enums
+export const SET_LOG_STATUS = 'SET_LOG_STATUS';
+export const SET_USER = 'SET_USER';
+export const SET_ESTATE = 'SET_ESTATE';
+export const SET_DEFAULT = 'SET_DEFAULT';

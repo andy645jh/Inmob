@@ -1,6 +1,7 @@
 import { createStore, combineReducers  } from 'redux';
 import reducerIndexPage from './reducers/ReducerIndexPage';
 import reducerDetailPage from './reducers/ReducerDetailPage';
+import reducerSession from './reducers/ReducerSession';
 
 function saveToLocalStorage(state)
 {
@@ -28,7 +29,8 @@ function loadFromLocalStorage()
 
 const rootReducer = combineReducers({
     reducerDetailPage,
-    reducerIndexPage    
+    reducerIndexPage,
+    reducerSession,    
 })
 
 const persistedState = loadFromLocalStorage();

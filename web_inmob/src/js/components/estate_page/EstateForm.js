@@ -3,7 +3,7 @@ import EstateList from "../index_page/EstateList";
 import Debug from "../utils/Debug";
 import { connect } from "react-redux";
 import Service from "../../services/Service";
-import { SET_ESTATE } from "../../actions/ActionsDetailPage";
+import { SET_ESTATE } from "../../components/utils/Enums";
 
 class EstateForm extends Component {
   constructor(props) {

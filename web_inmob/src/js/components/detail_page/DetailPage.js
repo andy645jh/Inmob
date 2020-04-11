@@ -6,7 +6,7 @@ import ListQuestion from './ListQuestion';
 import TitleBlueBg from './TitleBlueBg';                 
 import Service from '../../services/Service';
 import Debug from '../utils/Debug';
-import { SET_ESTATE } from '../../actions/ActionsDetailPage';
+import { SET_ESTATE } from '../utils/Enums';
 import { connect } from 'react-redux';
 
 class DetailPage extends Component {

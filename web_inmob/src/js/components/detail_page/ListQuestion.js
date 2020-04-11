@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Enums from '../utils/Enums';
 import EventsObserver from '../utils/EventsObserver';
 import TitleBlueBg from './TitleBlueBg';
 import Service from '../../services/Service';
@@ -29,7 +28,7 @@ class ListQuestion extends Component {
     
     componentWillUnmount()
     {
-        EventsObserver.unsubscribe(Enums.ADD_QUESTION, this.callback);
+        //EventsObserver.unsubscribe(Enums.ADD_QUESTION, this.callback);
     }
 
     async updateListQuestion()

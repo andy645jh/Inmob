@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import placeholder from '../../../img/placeholder.jpg'; // Tell Webpack this JS file uses this image
 import CardIconRow from './CardIconsRow';
-import { SET_ESTATE } from '../../actions/ActionsDetailPage';
+import { SET_ESTATE } from '../../components/utils/Enums';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 

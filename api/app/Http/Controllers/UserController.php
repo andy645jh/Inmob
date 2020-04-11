@@ -29,9 +29,11 @@ class UserController extends Controller
         }
         return $token;
     }
+
     public function login(Request $request)
-    {
+    {        
         $user = \App\User::where('email', $request->email)->get()->first();
+        //$test = \Hash::check($request->password, $user->password);
         if ($user && \Hash::check($request->password, $user->password)) // The passwords match...
         {
             $token = self::getToken($request->email, $request->password);

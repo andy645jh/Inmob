@@ -13,43 +13,16 @@ import Debug from '../utils/Debug';
 import EstatePage from '../estate_page/EstatePage';
 
 export default class Index extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isLoggedIn: false,
-            user: {}
-        };
-    }
-
-    componentDidMount() {
-        let state = localStorage["appState"];
-        if (state) {
-            let AppState = JSON.parse(state);
-            Debug.Log("Json: " , AppState);
-            this.setState({ isLoggedIn: AppState.isLoggedIn, user: AppState });
-        }
-    }
-
-    logoutUser() {
-        let appState = {
-            isLoggedIn: false,
-            user: {}
-        };
-        // save app state with user date in local storage
-        localStorage["appState"] = JSON.stringify(appState);
-        this.setState(appState);
-    };
-
+     
     render() {
         return (
             <Provider store={store}>
                 <Router>
                     <div className="container">
-                        <NavBar isLoggedIn={this.state.isLoggedIn} logoutUser={() => this.logoutUser()} />
+                        <NavBar/>
                         <Switch>
                             <Route path='/' exact component={HomePage} />
-                            <Route path='/search' component={SearchPage} />
+                            <Route path='/search' exact component={SearchPage} />
                             <Route path='/detail/:id' exact component={DetailPage} />
                             <Route path='/login' exact component={LogInPage} />
                             <Route path='/register' exact component={RegisterPage} />

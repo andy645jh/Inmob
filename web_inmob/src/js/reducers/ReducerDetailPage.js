@@ -1,4 +1,4 @@
-import { SET_ESTATE } from "../actions/ActionsDetailPage";
+import { SET_ESTATE } from "../components/utils/Enums";
 
 const initialState = {
     estate: {}
