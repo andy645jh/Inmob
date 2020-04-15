@@ -5,20 +5,20 @@ TODO
 [x] Obtener informacion de web services desde Laravel
 [x] Modificar informacion de mockable de departamentos por json local
 [x] Investigar e implementar Router
-[] Conectar todas las paginas entre si
+[x] Conectar todas las paginas entre si
 [x] Implementar creacion de preguntas y respuestas
 [] Implementar filtros detallados
 [] Ordenar listas segun opcion
 [] Eliminar codigo no usado o comentado
 [] Optimizar cargas
 [x] Implementar Redux para HomePage
-[] Implementar Redux para SearchPage
+[x] Implementar Redux para SearchPage
 [] Implementar Redux para DetailPage
-[] Prevenir perdida de informacion al usar F5
+[x] Prevenir perdida de informacion al usar F5
 [x] Crear web services para Estate, EstateType, Question en Laravel
 [x] Agregar evento al crear pregunta para q se actualice la lista
-[] Ajustar listado de preguntas con respuestas
-[] Agregar inicio de sesion
+[x] Ajustar listado de preguntas con respuestas
+[x] Agregar inicio de sesion
 [] Restringir entrada a ciertas paginas dependiendo del usuario
 
 NOTES
