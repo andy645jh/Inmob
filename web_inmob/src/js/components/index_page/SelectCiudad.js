@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import store from '../../store';
 import Debug from '../utils/Debug';
+import { SELECTED_CITY } from '../utils/Enums';
 
 class SelectCiudad extends Component {
     
@@ -17,38 +18,27 @@ class SelectCiudad extends Component {
     }   
 
     componentDidMount()
+    {              
+        this.updateCombo();         
+    }
+
+    updateCombo()
     {
-        
-        const searchSelections = store.getState().reducerIndexPage.searchSelections;
-        this.departamento = searchSelections.departamento;   
-        const list = this.props.list[searchSelections.departamento].ciudades;                        
+        const list = this.props.list[this.props.departament-1].ciudades;                        
         this.cities = this.createOpts(list); 
-        this.setState({isLoading:false});
-
-        const unsubscribe = store.subscribe(() => {   
-           
-            const searchSelections = store.getState().reducerIndexPage.searchSelections;
-                        
-            if(searchSelections.departamento!==this.departamento){
-                const list = this.props.list[searchSelections.departamento].ciudades;
-                this.departamento = searchSelections.departamento;
-                this.props.ciudadSeleccionada(0);
-                this.cities = this.createOpts(list);                
-            }          
-        });
-
-          
+        Debug.Log("SelectCiudad.Default: ",this.props);
     }
 
     onChange(e)
-    {       
-        this.props.ciudadSeleccionada(e.target.value);
+    {   
+        this.props.onChange(e.target.value);
     }
     
     render()
     {           
-        const selected = this.props.searchSelections.ciudad;
-        Debug.Log("SelectCiudad.Default: ",this.state);
+        const selected = this.props.city;
+        this.updateCombo();
+
         return (
             <>
                 {this.cities == null && "Loading ..." }                
@@ -64,9 +54,10 @@ class SelectCiudad extends Component {
     createOpts(data)
     {
         var arrTen = [];
+        arrTen.push(<option key={0} value={0}>CIUDAD</option>);
         for (var k = 0; k < data.length; k++) {
             var opt = data[k];
-            arrTen.push(<option key={k} value={k}>{opt}</option>);
+            arrTen.push(<option key={k + 1} value={k + 1}>{opt}</option>);
         }
         return arrTen;
     }
@@ -80,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
     ciudadSeleccionada(ciudad)
     {
         dispatch({
-            type: 'CIUDAD_SELECCIONADA',
+            type: SELECTED_CITY,
             ciudad
         });
     }

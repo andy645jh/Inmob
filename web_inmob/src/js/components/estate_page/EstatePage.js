@@ -11,8 +11,6 @@ class EstatePage extends Component {
     {       
         super(props);     
         this.serviceEstates = new Service('estate');
-
-        //Debug.Log("Match: ", this.id);
     }
 
     render() {

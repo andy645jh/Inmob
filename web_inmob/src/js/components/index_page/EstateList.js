@@ -21,8 +21,16 @@ class EstateList extends Component {
     async getEstates() {
         try {
             this.setState({ isLoading: true });
-            const word = this.props.searchSelections.palabra;
-            const estatesJson = await  (this.props.isFiltered ? this.services.search(word) : this.services.getAll() );
+            
+            const filterOpts = {
+                word: this.props.searchSelections.palabra,
+                city: this.props.searchSelections.ciudad,
+                departament: this.props.searchSelections.departamento,
+                operation: this.props.searchSelections.operacion,
+                estateType: this.props.searchSelections.tipoInmueble,
+            }
+
+            const estatesJson = await (this.props.isFiltered ? this.services.search(filterOpts) : this.services.getAll() );
                            
             console.log("Estates 0: ", estatesJson);
             this.setState({ estates: estatesJson, isLoading: false });

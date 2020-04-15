@@ -5,9 +5,7 @@ import { connect } from "react-redux";
 import { SET_DEFAULT } from "../utils/Enums";
 
 class AuthBtn extends Component {
-  
-  logoutUser(e) 
-  {    
+  logoutUser(e) {
     e.preventDefault();
     this.props.logout();
   }
@@ -34,13 +32,12 @@ const mapStateToProps = (state) => ({
   isLoggedIn: state.reducerSession.isLoggedIn,
 });
 
-const mapDispatchToProps = dispatch => ({
-  logout()
-  {
-      dispatch({
-          type: SET_DEFAULT,                                    
-      });
-  } 
+const mapDispatchToProps = (dispatch) => ({
+  logout() {
+    dispatch({
+      type: SET_DEFAULT,
+    });
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthBtn);

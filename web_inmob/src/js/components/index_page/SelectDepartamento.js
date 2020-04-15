@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import Debug from '../utils/Debug';
 
 class SelectDepartamento extends Component {
@@ -8,33 +7,34 @@ class SelectDepartamento extends Component {
     {
         super(props); 
         this.state = {                        
-            departments: props.list
+            isLoading: false
         };
 
         this.onChange = this.onChange.bind(this);         
     }
 
     componentDidMount() { 
-        this.opts = this.state.departments != null ? this.createOpts(this.state.departments) : null;            
+        this.opts = this.props.list != null ? this.createOpts(this.props.list) : null;            
         this.setState({isLoading:false});
     } 
 
     onChange(e)
-    {        
-        this.props.departamentoSeleccionado(e.target.value);       
+    {       
+        this.props.onChange(e.target.value);    
     }
     
     render()
     {
-        const selected = this.props.searchSelections.departamento;
+        const selected = this.props.departament;        
         const {isLoading} = this.state;  
-       
+        Debug.Log("SelectDepartamento: "+selected);
+
         return (
             <>
                 {isLoading && "Loading ..."}
                 {(!isLoading && this.opts != null) &&
                     <div className="d-sm-inline d-xs-block">
-                        <select id="inputState" className="form-control" onChange={this.onChange} value={selected}>                            
+                        <select id="inputState" className="form-control" onChange={(e)=>this.onChange(e)} value={selected}>                            
                             {this.opts}
                         </select>
                     </div>
@@ -46,26 +46,13 @@ class SelectDepartamento extends Component {
     createOpts()
     {
         var arrTen = [];
-        for (var k = 0; k < this.state.departments.length; k++) {
-            var opt = this.state.departments[k];
-            arrTen.push(<option key={opt.id} value={opt.id}>{opt.departamento}</option>);
+        arrTen.push(<option key={0} value={0}>DEPARTAMENTO</option>);
+        for (var k = 0; k < this.props.list.length; k++) {
+            var opt = this.props.list[k];
+            arrTen.push(<option key={opt.id+1} value={opt.id+1}>{opt.departamento}</option>);
         }
         return arrTen;
     }
 }
 
-const mapStateToProps = state => ({
-    searchSelections: state.reducerIndexPage.searchSelections
-});
-
-const mapDispatchToProps = dispatch => ({
-    departamentoSeleccionado(dep)
-    {
-        dispatch({
-            type: 'DEPARTAMENTO_SELECCIONADO',
-            dep
-        });
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SelectDepartamento);
+export default SelectDepartamento;

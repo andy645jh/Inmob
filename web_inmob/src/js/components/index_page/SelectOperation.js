@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { SELECTED_OPERATION } from '../utils/Enums';
 
 class SelectOperation extends Component {
     
@@ -24,23 +25,14 @@ class SelectOperation extends Component {
             <>                
                 <div className="d-sm-inline d-xs-block">
                     <select value={selected} id="inputState" className="form-control" onChange={this.onChange}>                        
-                        <option value="0">VENTA</option>
-                        <option value="1">ARRIENDO</option>
+                        <option value="0">OPERACION</option>
+                        <option value="1">VENTA</option>
+                        <option value="2">ARRIENDO</option>
                     </select>
                 </div>                
             </>
         )
-    }
-
-    createOpts()
-    {
-        var arrTen = [];
-        for (var k = 0; k < this.state.operation.length; k++) {
-            var opt = this.state.operation[k];
-            arrTen.push(<option key={opt.id} value={opt.id}>{opt.name}</option>);
-        }
-        return arrTen;
-    }
+    }    
 }
 
 const mapStateToProps = state => ({
@@ -51,7 +43,7 @@ const mapDispatchToProps = dispatch => ({
     operacionSeleccionada(operacion)
     {
         dispatch({
-            type: 'OPERACION_SELECCIONADA',
+            type: SELECTED_OPERATION,
             operacion
         });
     }

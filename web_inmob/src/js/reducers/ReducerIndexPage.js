@@ -1,3 +1,5 @@
+import { SELECTED_DEPARTAMENT, SELECTED_CITY, SELECTED_OPERATION, SELECTED_WORD, SET_ESTATE_TYPE } from "../components/utils/Enums"
+
 const initialState = {
     searchSelections: {
         departamento: 0,
@@ -10,7 +12,7 @@ const initialState = {
 
 const reducerIndexPage = (state = initialState, action) => {
     switch (action.type) {
-        case 'DEPARTAMENTO_SELECCIONADO':
+        case SELECTED_DEPARTAMENT:
             return {
                 ...state,   
                 searchSelections: {                    
@@ -19,7 +21,7 @@ const reducerIndexPage = (state = initialState, action) => {
                 }
             }
 
-        case 'CIUDAD_SELECCIONADA':
+        case SELECTED_CITY:
             return {
                 ...state,
                 searchSelections: {
@@ -28,7 +30,7 @@ const reducerIndexPage = (state = initialState, action) => {
                 }
             }
         
-        case 'OPERACION_SELECCIONADA':
+        case SELECTED_OPERATION:
             return {
                 ...state,
                 searchSelections: {
@@ -37,7 +39,7 @@ const reducerIndexPage = (state = initialState, action) => {
                 }
             }
 
-        case 'TIPO_INMUEBLE_SELECCIONADO':
+        case SET_ESTATE_TYPE:
             return {
                 ...state,
                 searchSelections: {
@@ -46,20 +48,14 @@ const reducerIndexPage = (state = initialState, action) => {
                 }
             }
 
-        case 'PALABRA_SELECCIONADA':
+        case SELECTED_WORD:
             return {
                 ...state,
                 searchSelections: {
                     ...state.searchSelections,
                     palabra: action.palabra,                    
                 }
-            }
-
-        case 'SET_DEPARTAMENTOS':
-            return {
-                ...state,                
-                departaments: action.departaments
-            }
+            }        
 
         default:
             return state;

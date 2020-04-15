@@ -65,9 +65,10 @@ class SelectEstateType extends Component {
 
     createOpts(estateTypes) {
         var arrTen = [];
+        arrTen.push(<option key={0} value={0}>INMUEBLE</option>);
         for (var k = 0; k < estateTypes.length; k++) {
             var opt = estateTypes[k];
-            arrTen.push(<option key={opt.id} value={opt.id}>{opt.name}</option>);
+            arrTen.push(<option key={opt.id + 1} value={opt.id + 1}>{opt.name}</option>);
         }
         return arrTen;
     }

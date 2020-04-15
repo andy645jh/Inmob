@@ -37,8 +37,9 @@ class EstateController extends Controller
     }
 
 
-    public function search($word)
+    public function search(Request $request)
     {
+        $word = $request->word;
         $result = Estate::where('description', 'like', "%$word%")
                         ->orWhere('neighborhood', 'like', "%$word%")
                         ->get();
