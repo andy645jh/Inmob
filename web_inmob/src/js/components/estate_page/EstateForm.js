@@ -106,13 +106,15 @@ class EstateForm extends Component {
           <SelectDepartamento
             useStore={false}
             onChange={(val) => this.onChangeDep(val)}
-            list={departments}            
+            list={departments}    
+            attrs="mt-2"        
           />
           <SelectCiudad
             useStore={false}
             onChange={(val) => this.onChangeCity(val)}
             list={departments}
             departament={departament}
+            attrs="mt-2"
           />         
           <input
             className="form-control mt-2"

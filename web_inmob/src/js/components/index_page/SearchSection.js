@@ -34,24 +34,30 @@ class SearchSection extends Component {
 
   render() {
     const departamento = this.props.searchSelections.departamento;
-    const city = this.props.searchSelections.ciudad;    
+    const city = this.props.searchSelections.ciudad;
     const word = this.props.searchSelections.palabra;
     Debug.Log("SearchSection Dep: ", this.props);
     return (
       <>
         <div className="form-row mt-3 mb-3">
           <form className="w-100 d-sm-flex align-items-center justify-content-around">
-            <SelectDepartamento              
-              onChange={(val) => this.onChangeDep(val)}
-              list={departments}
-              departament={departamento}
-            />
-            <SelectCiudad              
-              onChange={(val) => this.onChangeCity(val)}
-              list={departments}
-              departament={departamento}
-              city={city}
-            />
+            <div className="d-sm-inline d-xs-block">
+              <SelectDepartamento
+                onChange={(val) => this.onChangeDep(val)}
+                list={departments}
+                departament={departamento}
+                attrs="d-sm-inline d-xs-block"
+              />
+            </div>
+            <div className="d-sm-inline d-xs-block">
+              <SelectCiudad
+                onChange={(val) => this.onChangeCity(val)}
+                list={departments}
+                departament={departamento}
+                city={city}
+                attrs="d-sm-inline d-xs-block"
+              />
+            </div>
             <SelectOperation />
             <SelectEstateType />
 
