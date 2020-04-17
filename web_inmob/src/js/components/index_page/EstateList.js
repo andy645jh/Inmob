@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { SET_DEPARTAMENTS_ID, SET_CITIES_ID } from "../utils/Enums";
 import depJson from "./../../../json/data.json";
 import Debug from "../utils/Debug";
+import store from '../../store';
 
 class EstateList extends Component {
   constructor(props) {
@@ -18,9 +19,22 @@ class EstateList extends Component {
     this.services = new Service("estate");
   }
 
-  componentDidMount() {
-    this.getEstates();
+  componentDidMount() {    
+    this.getEstates();       
   }
+
+  componentDidUpdate(currentProps) 
+  {    
+    const dep = this.props.searchSelections.departamento;
+    const nextDep = currentProps.searchSelections.departamento;
+
+    if(dep!==nextDep)
+    {
+        Debug.Log("This Props: ", dep);
+        Debug.Log("Next Props: ", nextDep); 
+        this.getEstates();
+    }       
+  }  
 
   async getEstates() {
     try {
@@ -80,7 +94,7 @@ class EstateList extends Component {
   }
 
   render() {
-    const { isLoading, estates } = this.state;
+    const { isLoading, estates } = this.state;    
     console.log("EstateList : ", this.props);
     //console.log("Estates 2: ", estates);
     return (
@@ -102,6 +116,7 @@ class EstateList extends Component {
 const mapStateToProps = (state) => ({
   searchSelections: state.reducerIndexPage.searchSelections,
   departamentsId: state.reducerSearchPage.departamentsId,
+  components: state.reducerSearchPage.components,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -121,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({
       type: "CLEAR",
     });
-  },
+  },  
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EstateList);

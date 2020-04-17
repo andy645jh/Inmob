@@ -3,15 +3,12 @@ import EstateList from '../index_page/EstateList';
 import Accordion from './Accordion';
 import ResultSection from './ResultSection';
 
-class SearchPage extends Component {
-    constructor(props)
-    {
-        super(props); 
-    }
+class SearchPage extends Component 
+{    
 
     onClick(e)
     {
-        //e.preventDefault();        
+        e.preventDefault(); 
     }
 
     render() {
