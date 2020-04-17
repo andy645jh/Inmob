@@ -9,6 +9,11 @@ class SearchPage extends Component {
         super(props); 
     }
 
+    onClick(e)
+    {
+        //e.preventDefault();        
+    }
+
     render() {
         return (
             <div className="container">  
@@ -19,7 +24,7 @@ class SearchPage extends Component {
                     </div>
 
                     <div className="col-md-3">                    
-                        <Accordion />
+                        <Accordion onClick={(e)=>this.onClick(e)} />
                     </div>
                 </div>
                 

@@ -3,6 +3,7 @@ import reducerIndexPage from './reducers/ReducerIndexPage';
 import reducerDetailPage from './reducers/ReducerDetailPage';
 import reducerSession from './reducers/ReducerSession';
 import reducerEstatePage from './reducers/ReducerEstatePage';
+import reducerSearchPage from './reducers/ReducerSearchPage';
 
 function saveToLocalStorage(state)
 {
@@ -32,7 +33,8 @@ const rootReducer = combineReducers({
     reducerDetailPage,
     reducerIndexPage,
     reducerSession,   
-    reducerEstatePage
+    reducerEstatePage,
+    reducerSearchPage
 })
 
 const persistedState = loadFromLocalStorage();

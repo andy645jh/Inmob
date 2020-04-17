@@ -18,5 +18,11 @@ class Estate extends Model
         'operation',
         'meters',
         'estate_type_id'
-    ];        
+    ];  
+    
+    public function scopeWord($query,$word)
+    {
+        return $query->where('description', 'like', "%$word%")
+        ->orWhere('neighborhood', 'like', "%$word%");
+    }
 }

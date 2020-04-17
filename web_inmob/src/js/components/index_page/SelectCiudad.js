@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import store from "../../store";
 import Debug from "../utils/Debug";
 import { SELECTED_CITY } from "../utils/Enums";
 
@@ -19,7 +18,15 @@ class SelectCiudad extends Component {
     this.updateCombo();
   }
 
-  updateCombo() {
+  updateCombo() 
+  {
+    //si no ha seleccionado departamento
+    if(this.props.departament==0) 
+    {
+      this.cities = this.createOpts([]);
+      return;
+    }
+    
     const list = this.props.list[this.props.departament - 1].ciudades;
     this.cities = this.createOpts(list);
     Debug.Log("SelectCiudad.Default: ", this.props);

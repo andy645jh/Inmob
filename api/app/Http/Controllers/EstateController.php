@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Estate;
 
 class EstateController extends Controller
@@ -40,10 +41,41 @@ class EstateController extends Controller
     public function search(Request $request)
     {
         $word = $request->word;
-        $result = Estate::where('description', 'like', "%$word%")
-                        ->orWhere('neighborhood', 'like', "%$word%")
-                        ->get();
+        $city = $request->city;
+        $departament = $request->departament;
+        $estateType = $request->estateType;
+        $operation = $request->operation;
+                
+        $queryData = Estate::where('id', '>', 0);
+        
+
+        if(!is_null($city) && $city!=0)
+        {
+            $queryData = $queryData->where('city', '=', $city);
+        }
+
+        if(!is_null($departament) && $departament!=0)
+        {
+            $queryData = $queryData->where('departament', '=', $departament);
+        }
+           
+        if(!is_null($operation) && $operation!=0)
+        {
+            $queryData = $queryData->where('operation', '=', $operation);
+        }
+
+        if(!is_null($estateType) && $estateType!=0)
+        {
+            $queryData = $queryData->where('estate_type_id', '=', $estateType);
+        }                  
                         
+        if(!is_null($word))
+        {            
+            $queryData = $queryData->word($word);
+        }
+
+        // mostrar la consulta $queryData->toSql()
+        $result = $queryData->get();
         return response($result, 200);
     }
 
