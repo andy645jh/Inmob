@@ -8,12 +8,11 @@ class FilterOption extends Component {
     const val = e.target.checked;
     if (val) {
         this.props.departamentoSeleccionado(this.props.id);
-    }
-    Debug.Log("Checked: ", val);
+    }    
   }
 
-  render() {
-    Debug.Log("FilterOption Prop: ", this.props);
+  render() 
+  {    
     return (
       <div className="form-check">
         <input

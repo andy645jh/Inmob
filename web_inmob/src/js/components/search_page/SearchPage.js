@@ -8,7 +8,7 @@ class SearchPage extends Component
 
     onClick(e)
     {
-        e.preventDefault(); 
+        //e.preventDefault(); 
     }
 
     render() {

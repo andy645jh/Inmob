@@ -16,13 +16,15 @@ class CreateEstateTable extends Migration
         Schema::create('estate', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('description');
+            $table->text('neighborhood');
             $table->integer('price');
             $table->integer('admin_price');             
             $table->integer('rooms');            
             $table->boolean('garage');
             $table->boolean('parkin_lot');
             $table->integer('operation');
-            $table->double('meters',10,2);   
+            $table->double('meters',10,2); 
+            $table->date('publish_date');  
             $table->unsignedBigInteger('estate_type_id');                        
             $table->foreign('estate_type_id')->references('id')->on('estate_type');            
             $table->timestamps();

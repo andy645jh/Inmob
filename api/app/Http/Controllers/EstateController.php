@@ -17,6 +17,7 @@ class EstateController extends Controller
     public function create(Request $request) 
     {
         $estate = new Estate;
+        $estate->publish_date = new DateTime();
         $estate->neighborhood = $request->neighborhood;            
         $estate->description = $request->description;            
         $estate->price = $request->price;            
@@ -45,7 +46,9 @@ class EstateController extends Controller
         $departament = $request->departament;
         $estateType = $request->estateType;
         $operation = $request->operation;
-                
+        $order = $request->order;
+        
+
         $queryData = Estate::where('id', '>', 0);
         
 
@@ -75,6 +78,12 @@ class EstateController extends Controller
         }
 
         // mostrar la consulta $queryData->toSql()
+        $opt = strpos($order, 'desc') ? 'desc' : 'asc'; 
+        $cond = strpos($order, 'price') == 0 ? 'price' : 'publish_date';
+                             
+        $queryData->orderBy($cond, $opt);
+        
+        
         $result = $queryData->get();
         return response($result, 200);
     }

@@ -10,9 +10,10 @@ const initialState = {
 const reducerSearchPage = (state = initialState, action) => {
   switch (action.type) {
     case SET_DEPARTAMENTS_ID:
+      
       return {
         ...state,
-        departamentsId: state.departamentsId.concat(action.departamentsId),
+        departamentsId: action.departamentsId,
       };
 
     case SET_CITIES_ID:

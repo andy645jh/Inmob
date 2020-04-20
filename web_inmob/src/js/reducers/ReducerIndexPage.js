@@ -1,4 +1,4 @@
-import { SELECTED_DEPARTAMENT, SELECTED_CITY, SELECTED_OPERATION, SELECTED_WORD, SET_ESTATE_TYPE } from "../components/utils/Enums"
+import { SELECTED_DEPARTAMENT, SELECTED_CITY, SELECTED_OPERATION, SELECTED_WORD, SET_ESTATE_TYPE, SET_ORDER } from "../components/utils/Enums"
 
 const initialState = {
     searchSelections: {
@@ -6,7 +6,8 @@ const initialState = {
         ciudad: 0,
         operacion: 0,
         tipoInmueble: 0,
-        palabra: ''    
+        palabra: '',
+        order: 'price-asc',        
     }
 }
 
@@ -56,6 +57,15 @@ const reducerIndexPage = (state = initialState, action) => {
                     palabra: action.palabra,                    
                 }
             }        
+
+        case SET_ORDER:
+            return {
+                ...state,
+                searchSelections: {
+                    ...state.searchSelections,
+                    order: action.order,                    
+                }
+            } 
 
         default:
             return state;

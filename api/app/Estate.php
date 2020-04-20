@@ -17,7 +17,8 @@ class Estate extends Model
         'parkin_lot',
         'operation',
         'meters',
-        'estate_type_id'
+        'estate_type_id',
+        'publish_date'
     ];  
     
     public function scopeWord($query,$word)

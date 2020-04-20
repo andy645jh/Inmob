@@ -26,15 +26,21 @@ class EstateList extends Component {
   componentDidUpdate(currentProps) 
   {    
     const dep = this.props.searchSelections.departamento;
-    const nextDep = currentProps.searchSelections.departamento;
+    const currentDep = currentProps.searchSelections.departamento;
 
-    if(dep!==nextDep)
-    {
-        Debug.Log("This Props: ", dep);
-        Debug.Log("Next Props: ", nextDep); 
-        this.getEstates();
+    const order = this.props.searchSelections.order;
+    const currentOrder = currentProps.searchSelections.order;
+
+    if(dep!==currentDep || currentOrder!==order)
+    {        
+      this.getEstates();
     }       
   }  
+
+  checkPriceOrder()
+  {
+
+  }
 
   async getEstates() {
     try {
@@ -46,6 +52,7 @@ class EstateList extends Component {
         departament: this.props.searchSelections.departamento,
         operation: this.props.searchSelections.operacion,
         estateType: this.props.searchSelections.tipoInmueble,
+        order: this.props.searchSelections.order,
       };
 
       const estatesJson = await (this.props.isFiltered
@@ -66,7 +73,11 @@ class EstateList extends Component {
     var list = [];
     var index = 0;
     this.props.setClear();
+   
     this.state.estates.forEach((element) => {
+
+      if(list.find(x => x.depId==element.departament)!=null) return;
+
       list.push({
         id: index,
         depId: element.departament,
