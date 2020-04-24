@@ -1,26 +1,145 @@
-import React, { Component } from 'react';
-import FilterOption from './FilterOption';
-import { connect } from 'react-redux';
-import Debug from '../utils/Debug';
-import { SELECTED_DEPARTAMENT } from '../utils/Enums';
+import React, { Component } from "react";
+import FilterOption from "./FilterOption";
+import { connect } from "react-redux";
+import Debug from "../utils/Debug";
+import { SELECTED_DEPARTAMENT, InputTypes, Orientation } from "../utils/Enums";
+import FilterCategory from "./FilterCategory";
+import { Filter } from "../utils/clases/Filter";
+import Badge from "./Badge";
 
-class Accordion extends Component 
-{
-    onClick()
-    {
-        this.props.departamentoSeleccionado(0);
+class Accordion extends Component {
+  constructor() {
+    super();
+    this.createRoomsData();
+    this.roomsSelected = [];
+  }
+
+  createRoomsData() {
+    this.roomsData = [];
+    var suffix = "";
+    for (var i = 1; i < 6; i++) {
+      if (i == 5) suffix = "+";
+      this.roomsData.push(new Filter(i, i + suffix, i + suffix));
     }
+  }
 
-    render()
-    {
-        const departaments = this.props.departaments;
-        const depSelected = this.props.searchSelections.departamento;
-        Debug.Log("Dep Selected: ",depSelected);
+  onClick() {
+    this.props.departamentoSeleccionado(0);
+  }
 
-        return (
-                <>
-                <div id="accordion">
-                    <div className="card">
+  onChangeCheckBox(e) {
+    Debug.Log("Event: ", e.target.checked);
+    Debug.Log("Name: ", e.target.name);
+    Debug.Log("Valur: ", e.target.value);
+    if (e.target.name === "rooms") {
+      if (e.target.checked) {
+        this.roomsSelected.push(e.target.value);
+      } else {
+        this.roomsSelected = this.roomsSelected.filter(
+          (el) => el !== e.target.value
+        );
+      }
+    } else {
+      if (e.target.checked) {
+        this.props.departamentoSeleccionado(e.target.value);
+      }
+    }
+    Debug.Log("Rooms Selected: ", this.roomsSelected);
+  }
+
+  convertDepartamentsToData() {
+    var data = [];
+    this.props.departaments.forEach((element) => {
+      data.push(new Filter(element.depId, element.depId, element.depName));
+    });
+    return data;
+  }
+
+  render() {
+    const departaments = this.convertDepartamentsToData();
+    const depSelected = this.props.searchSelections.departamento;
+    Debug.Log("Dep Selected: ", departaments);
+
+    return (
+      <section className="detail-p-tb">
+        <div id="accordion">
+
+          <div className="card">
+            <div className="card-header text-white bg-primary">Filters</div>
+            <div className="card-body">
+              {depSelected != 0 && departaments.length == 1 && (
+                <Badge tittle={departaments[0].label + " "} onClick={() => this.onClick()} />                
+              )}
+            </div>
+          </div>
+
+          {departaments.length > 1 && (
+            <FilterCategory
+              type={InputTypes.CHECKBOX}
+              orientation={Orientation.VERTICAL}
+              onChange={(e) => this.onChangeCheckBox(e)}
+              name="departaments"
+              tittle="Departaments"
+              data={departaments}
+            />
+          )}
+
+          <FilterCategory
+            data={this.roomsData}
+            orientation={Orientation.HORIZONTAL}
+            onChange={(e) => this.onChangeCheckBox(e)}
+            type={InputTypes.CHECKBOX}
+            name="rooms"
+            tittle="Rooms"
+          />
+
+          <FilterCategory type={InputTypes.MIN_MAX} tittle="Meters" min="5" />
+
+          <FilterCategory
+            type={InputTypes.MIN_MAX}
+            tittle="Price"
+            min="10000"
+          />
+
+          <FilterCategory
+            type={InputTypes.TEXTBOX}
+            tittle="Search"
+            placeholder="Ej: Cocina"
+          />
+
+          <div className="card">
+            <button
+              type="button"
+              className="btn btn-primary w-100"
+              onClick={this.props.onClick}
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  departaments: state.reducerSearchPage.departamentsId,
+  searchSelections: state.reducerIndexPage.searchSelections,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  departamentoSeleccionado(dep) {
+    dispatch({
+      type: SELECTED_DEPARTAMENT,
+      dep,
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Accordion);
+/*
+
+<div className="card">
                         <div className="card-header" id="headingOne">
                             <h5 className="mb-0">FILTROS SELECCIONADOS</h5>
                         </div>
@@ -49,57 +168,11 @@ class Accordion extends Component
                             </div>
                         </div>
                     </div>
-                    )}
-                    <div className="card">
-                        <div className="card-header" id="headingThree">
-                        <h5 className="mb-0">
-                            <button className="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                CIUDAD
-                            </button>
-                        </h5>
-                        </div>
-                        <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div className="card-body">
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                                    <label className="form-check-label" htmlFor="defaultCheck1">
-                                        Medellin
-                                    </label>
-                                </div>   
-                                <div className="form-check">
-                                    <input className="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                                    <label className="form-check-label" htmlFor="defaultCheck1">
-                                        Cali
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className="row filter-field">
-                    <div className="col">
-                        <input id="inputState" className="form-control mb-1" placeholder="Ejem. Garage"/>  
-                        <button type="button" className="btn btn-primary w-100" onClick={this.props.onClick}>Apply</button>
-                    </div>    
-                </div>
-                </>
-        );
-    }    
-}
+                    )}  
 
-const mapStateToProps = state => ({
-    departaments: state.reducerSearchPage.departamentsId,
-    searchSelections: state.reducerIndexPage.searchSelections
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    departamentoSeleccionado(dep) {
-        dispatch({
-          type: SELECTED_DEPARTAMENT,
-          dep,
-        });
-      },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps) (Accordion);
+                    <FilterCategory type="CheckBox" name="departaments" tittle="Departaments" data={departaments} />  
+                    <FilterCategory type="MinMax" tittle="Meters" min="5" />  
+                    <FilterCategory type="MinMax" tittle="Price" min="10000"/> 
+                    <FilterCategory onChange={(e)=> this.onChange(e)} type="CheckBox" name="rooms" tittle="Rooms" /> 
+                    <FilterCategory type="TextBox" tittle="Search" placeholder="Ej: Cocina" /> 
+                */

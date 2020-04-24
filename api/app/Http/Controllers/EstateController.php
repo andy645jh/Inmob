@@ -75,7 +75,7 @@ class EstateController extends Controller
         if(!is_null($word))
         {            
             $queryData = $queryData->word($word);
-        }
+        }                                                                                                                                                                       
 
         // mostrar la consulta $queryData->toSql()
         $opt = strpos($order, 'desc') ? 'desc' : 'asc'; 

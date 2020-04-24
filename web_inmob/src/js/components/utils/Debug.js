@@ -1,23 +1,29 @@
 import { useDebug } from '../../../json/config.json';
 
-export default class Debug{
-    static Log(msg)
-    {
-        if(useDebug) console.log(msg);
-    }
+export default class Debug{    
 
     static Log(msg, obj)
     {
-        if(useDebug) console.log(msg, obj);
-    }
-
-    static Error(msg)
-    {
-        if(useDebug) console.error(msg);
+        if(useDebug) {
+            if(obj)
+            {
+                console.log(msg,obj);
+            }else{
+                console.log(msg);                
+            }            
+        }
     }
 
     static Error(msg, obj)
     {
-        if(useDebug) console.error(msg, obj);
+        if(useDebug) 
+        {
+            if(obj)
+            {
+                console.error(msg,obj);
+            }else{
+                console.error(msg);     
+            }           
+        }
     }
 }

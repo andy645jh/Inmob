@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import Debug from "../utils/Debug";
 import { connect } from "react-redux";
 import { SET_ORDER } from "../utils/Enums";
 
 class ResultSection extends Component {
   onChange(e) 
-  {
-    const val = e.target.value;
-    Debug.Log("Val: ", val);    
-    this.props.setOrder(val);         
+  {       
+    this.props.setOrder(e.target.value);         
   }
 
   render() {

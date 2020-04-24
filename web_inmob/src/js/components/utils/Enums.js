@@ -13,3 +13,15 @@ export const SET_CITIES_ID = 'SET_CITIES_ID';
 export const SET_DEPARTAMENTS_ID = 'SET_DEPARTAMENTS_ID';
 export const SET_ORDER = 'SET_ORDER';
 
+export const InputTypes = {
+    CHECKBOX: 'CHECKBOX',
+    TEXTBOX: 'TEXTBOX',
+    MIN_MAX: 'MIN_MAX'    
+}
+
+export const Orientation = {
+    VERTICAL: 0,
+    HORIZONTAL: 1
+    
+}
+
