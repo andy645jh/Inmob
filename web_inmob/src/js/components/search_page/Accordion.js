@@ -1,30 +1,42 @@
 import React, { Component } from "react";
-import FilterOption from "./FilterOption";
 import { connect } from "react-redux";
 import Debug from "../utils/Debug";
-import { SELECTED_DEPARTAMENT, InputTypes, Orientation } from "../utils/Enums";
+import {
+  SELECTED_DEPARTAMENT,
+  InputTypes,
+  Orientation,
+  EstateTypeCombo,
+  RoomsCombo,
+  SET_ESTATE_TYPE,
+  FilterOpt,
+  SELECTED_WORD,
+} from "../utils/Enums";
 import FilterCategory from "./FilterCategory";
 import { Filter } from "../utils/clases/Filter";
 import Badge from "./Badge";
+import { GetEstateTypeById } from "../utils/Converter";
 
 class Accordion extends Component {
   constructor() {
     super();
-    this.createRoomsData();
     this.roomsSelected = [];
   }
 
-  createRoomsData() {
-    this.roomsData = [];
-    var suffix = "";
-    for (var i = 1; i < 6; i++) {
-      if (i == 5) suffix = "+";
-      this.roomsData.push(new Filter(i, i + suffix, i + suffix));
-    }
-  }
+  onClick(type) {
+    switch (type) 
+    {
+        case FilterOpt.ESTATE_TYPE:
+            this.props.estateTypeSeleccionada(0);
+            break;
 
-  onClick() {
-    this.props.departamentoSeleccionado(0);
+        case FilterOpt.DEPARTAMENT:
+            this.props.departamentoSeleccionado(0);
+            break;
+
+        case FilterOpt.WORD:
+            this.props.wordSelected("");
+            break;
+    }
   }
 
   onChangeCheckBox(e) {
@@ -47,6 +59,11 @@ class Accordion extends Component {
     Debug.Log("Rooms Selected: ", this.roomsSelected);
   }
 
+  onChangeComboBox(e) {
+    if (e.target.value == 0) return;
+    this.props.estateTypeSeleccionada(e.target.value);
+  }
+
   convertDepartamentsToData() {
     var data = [];
     this.props.departaments.forEach((element) => {
@@ -57,18 +74,34 @@ class Accordion extends Component {
 
   render() {
     const departaments = this.convertDepartamentsToData();
-    const depSelected = this.props.searchSelections.departamento;
+    const searchOpts = this.props.searchSelections;
     Debug.Log("Dep Selected: ", departaments);
 
     return (
       <section className="detail-p-tb">
         <div id="accordion">
-
           <div className="card">
             <div className="card-header text-white bg-primary">Filters</div>
             <div className="card-body">
-              {depSelected != 0 && departaments.length == 1 && (
-                <Badge tittle={departaments[0].label + " "} onClick={() => this.onClick()} />                
+              {searchOpts.departamento != 0 && departaments.length == 1 && (
+                <Badge
+                  tittle={departaments[0].label + " "}
+                  onClick={() => this.onClick(FilterOpt.DEPARTAMENT)}
+                />
+              )}
+
+              {searchOpts.tipoInmueble != 0 && (
+                <Badge
+                  tittle={GetEstateTypeById(searchOpts.tipoInmueble) + " "}
+                  onClick={() => this.onClick(FilterOpt.ESTATE_TYPE)}
+                />
+              )}
+
+              {searchOpts.palabra && (
+                <Badge
+                  tittle={searchOpts.palabra + " "}
+                  onClick={() => this.onClick(FilterOpt.WORD)}
+                />
               )}
             </div>
           </div>
@@ -84,8 +117,18 @@ class Accordion extends Component {
             />
           )}
 
+          {departaments.length > 1 && (
+            <FilterCategory
+              type={InputTypes.COMBOBOX}
+              onChange={(e) => this.onChangeComboBox(e)}
+              name="estatesType"
+              tittle="Estates Type"
+              data={EstateTypeCombo}
+            />
+          )}
+
           <FilterCategory
-            data={this.roomsData}
+            data={RoomsCombo}
             orientation={Orientation.HORIZONTAL}
             onChange={(e) => this.onChangeCheckBox(e)}
             type={InputTypes.CHECKBOX}
@@ -132,6 +175,20 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({
       type: SELECTED_DEPARTAMENT,
       dep,
+    });
+  },
+
+  estateTypeSeleccionada(tipoInmueble) {
+    dispatch({
+      type: SET_ESTATE_TYPE,
+      tipoInmueble,
+    });
+  },
+
+  wordSelected(palabra) {
+    dispatch({
+      type: SELECTED_WORD,
+      palabra,
     });
   },
 });

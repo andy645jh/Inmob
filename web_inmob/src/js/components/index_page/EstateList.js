@@ -31,7 +31,11 @@ class EstateList extends Component {
     const order = this.props.searchSelections.order;
     const currentOrder = currentProps.searchSelections.order;
 
-    if(dep!==currentDep || currentOrder!==order)
+    const tipoInmueble = this.props.searchSelections.tipoInmueble;
+    const currentTipoInmueble = currentProps.searchSelections.tipoInmueble;
+
+
+    if(dep!==currentDep || currentOrder!==order || currentTipoInmueble!==tipoInmueble)
     {        
       this.getEstates();
     }       
@@ -113,11 +117,16 @@ class EstateList extends Component {
         {isLoading && "Loading ... "}
 
         <section className="lista row">
+          
+          {!isLoading && estates != null && estates.length==0 && 
+            <p className="mt-2">No se encontraron resultados</p>
+          }
+          
           {!isLoading &&
-            estates != null &&
-            estates.map((estate) => (
+            estates != null && estates.map((estate) => (
               <CardInfo key={estate.id} id={estate.id} estateInfo={estate} />
-            ))}
+            ))
+          }
         </section>
       </>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Debug from '../utils/Debug';
 import Service from '../../services/Service';
+import { SET_ESTATE_TYPE } from '../utils/Enums';
 
 class SelectEstateType extends Component {
 
@@ -81,7 +82,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     estateTypeSeleccionada(tipoInmueble) {
         dispatch({
-            type: 'TIPO_INMUEBLE_SELECCIONADO',
+            type: SET_ESTATE_TYPE,
             tipoInmueble
         });
     }

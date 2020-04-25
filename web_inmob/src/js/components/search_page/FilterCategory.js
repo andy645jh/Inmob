@@ -5,6 +5,7 @@ import { SELECTED_DEPARTAMENT, InputTypes } from "../utils/Enums";
 import FilterContentMinMax from "./FilterContentMinMax";
 import FilterContentCheckBox from "./FilterContentCheckBox";
 import FilterContentTextBox from "./FilterContentTextBox";
+import FilterContentComboBox from "./FilterContentComboBox";
 
 class FilterCategory extends Component {
   getElementType(type) {
@@ -26,9 +27,12 @@ class FilterCategory extends Component {
 
       case InputTypes.TEXTBOX:
         return <FilterContentTextBox placeholder={this.props.placeholder} />;
+      
+      case InputTypes.COMBOBOX:
+        return <FilterContentComboBox onChange={this.props.onChange} data={this.props.data} />;
 
       default:
-        return <p>Esto es una prueba</p>;
+        return <p className="red">No se encontro filtro de tipo {type}</p>;
     }
   }
 
@@ -47,17 +51,4 @@ class FilterCategory extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  searchSelections: state.reducerIndexPage.searchSelections,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  departamentoSeleccionado(dep) {
-    dispatch({
-      type: SELECTED_DEPARTAMENT,
-      dep,
-    });
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(FilterCategory);
+export default FilterCategory;
