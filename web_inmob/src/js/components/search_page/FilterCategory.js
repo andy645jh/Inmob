@@ -6,12 +6,18 @@ import FilterContentMinMax from "./FilterContentMinMax";
 import FilterContentCheckBox from "./FilterContentCheckBox";
 import FilterContentTextBox from "./FilterContentTextBox";
 import FilterContentComboBox from "./FilterContentComboBox";
+import * as Icon from 'react-bootstrap-icons';
 
 class FilterCategory extends Component {
   getElementType(type) {
     switch (type) {
       case InputTypes.MIN_MAX:
-        return <FilterContentMinMax min={this.props.min} />;
+        return (
+          <FilterContentMinMax 
+            min={this.props.min} 
+            name={this.props.name}
+            onChange={this.props.onChange}            
+          />);
 
       case InputTypes.CHECKBOX:
         return (
@@ -43,7 +49,10 @@ class FilterCategory extends Component {
     return (
       <div className="card">
         <div className="card-header text-white bg-primary">
-          {this.props.tittle}
+          <span className="align-middle">{this.props.tittle}</span>         
+          <button className="float-right btn btn-warning btn-sm" onClick={this.props.onClick} >
+            <Icon.Check />
+          </button>
         </div>
         <div className="card-body">{tag}</div>
       </div>

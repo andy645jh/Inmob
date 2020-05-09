@@ -1,4 +1,4 @@
-import { SELECTED_DEPARTAMENT, SELECTED_CITY, SELECTED_OPERATION, SELECTED_WORD, SET_ESTATE_TYPE, SET_ORDER } from "../components/utils/Enums"
+import { SELECTED_DEPARTAMENT, SELECTED_CITY, SELECTED_OPERATION, SELECTED_WORD, SET_ESTATE_TYPE, SET_ORDER, SET_PRICE } from "../components/utils/Enums"
 
 const initialState = {
     searchSelections: {
@@ -64,6 +64,15 @@ const reducerIndexPage = (state = initialState, action) => {
                 searchSelections: {
                     ...state.searchSelections,
                     order: action.order,                    
+                }
+            } 
+
+        case SET_PRICE:
+            return {
+                ...state,
+                searchSelections: {
+                    ...state.searchSelections,
+                    price: action.price,                    
                 }
             } 
 

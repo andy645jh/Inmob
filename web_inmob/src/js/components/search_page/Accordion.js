@@ -10,6 +10,7 @@ import {
   SET_ESTATE_TYPE,
   FilterOpt,
   SELECTED_WORD,
+  SET_PRICE,
 } from "../utils/Enums";
 import FilterCategory from "./FilterCategory";
 import { Filter } from "../utils/clases/Filter";
@@ -20,6 +21,7 @@ class Accordion extends Component {
   constructor() {
     super();
     this.roomsSelected = [];
+    this.price = { min: 5, max: 0 };
   }
 
   onClick(type) {
@@ -37,6 +39,18 @@ class Accordion extends Component {
             this.props.wordSelected("");
             break;
     }
+  }
+
+  onClickApply()
+  {
+    Debug.Log("OnClickApply");
+    this.props.setPriceInterval(this.price);
+  }
+
+  onChange(param)
+  {
+    Debug.Log("Param: ", param);
+    this.price = { min: param.min, max: param.max };
   }
 
   onChangeCheckBox(e) {
@@ -111,6 +125,7 @@ class Accordion extends Component {
               type={InputTypes.CHECKBOX}
               orientation={Orientation.VERTICAL}
               onChange={(e) => this.onChangeCheckBox(e)}
+              onClick={()=> this.onClickApply() }
               name="departaments"
               tittle="Departaments"
               data={departaments}
@@ -121,6 +136,7 @@ class Accordion extends Component {
             <FilterCategory
               type={InputTypes.COMBOBOX}
               onChange={(e) => this.onChangeComboBox(e)}
+              onClick={()=> this.onClickApply() }
               name="estatesType"
               tittle="Estates Type"
               data={EstateTypeCombo}
@@ -131,20 +147,32 @@ class Accordion extends Component {
             data={RoomsCombo}
             orientation={Orientation.HORIZONTAL}
             onChange={(e) => this.onChangeCheckBox(e)}
+            onClick={()=> this.onClickApply() }
             type={InputTypes.CHECKBOX}
             name="rooms"
             tittle="Rooms"
           />
 
-          <FilterCategory type={InputTypes.MIN_MAX} tittle="Meters" min="5" />
+          <FilterCategory 
+            onChange={(param)=>this.onChange(param)}
+            onClick={()=> this.onClickApply() }
+            type={InputTypes.MIN_MAX} 
+            name="meters"
+            tittle="Meters" 
+            min="5" 
+          />
 
           <FilterCategory
+            onChange={(param)=>this.onChange(param)}
+            onClick={()=> this.onClickApply() }
             type={InputTypes.MIN_MAX}
+            name="price"
             tittle="Price"
             min="10000"
           />
 
           <FilterCategory
+            onClick={()=> this.onClickApply() }
             type={InputTypes.TEXTBOX}
             tittle="Search"
             placeholder="Ej: Cocina"
@@ -189,6 +217,13 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({
       type: SELECTED_WORD,
       palabra,
+    });
+  },
+
+  setPriceInterval(price) {
+    dispatch({
+      type: SET_PRICE,
+      price,
     });
   },
 });

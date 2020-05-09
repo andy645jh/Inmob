@@ -26,4 +26,15 @@ class Estate extends Model
         return $query->where('description', 'like', "%$word%")
         ->orWhere('neighborhood', 'like', "%$word%");
     }
+
+    public function scopePrice($query,$price)
+    {
+        if( $price["max"]>$price["min"] )
+        {
+            return $query->whereBetween('price', [$price["min"],$price["max"]] );
+        }else{
+            return $query->where('price', '>', $price["min"]);
+        }
+        
+    }
 }

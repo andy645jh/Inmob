@@ -47,10 +47,15 @@ class EstateController extends Controller
         $estateType = $request->estateType;
         $operation = $request->operation;
         $order = $request->order;
+        $price = $request->price;
         
 
         $queryData = Estate::where('id', '>', 0);
         
+        if(!is_null($price))
+        {            
+            $queryData = $queryData->price($price);
+        }  
 
         if(!is_null($city) && $city!=0)
         {

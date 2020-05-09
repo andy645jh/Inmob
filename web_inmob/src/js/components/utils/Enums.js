@@ -14,6 +14,7 @@ export const SET_ESTATE_TYPE = 'SET_ESTATE_TYPE';
 export const SET_CITIES_ID = 'SET_CITIES_ID';
 export const SET_DEPARTAMENTS_ID = 'SET_DEPARTAMENTS_ID';
 export const SET_ORDER = 'SET_ORDER';
+export const SET_PRICE = 'SET_PRICE';
 
 export const InputTypes = {
     CHECKBOX: 'CHECKBOX',
@@ -31,6 +32,7 @@ export const FilterOpt = {
     WORD: 0,
     ESTATE_TYPE: 1,
     DEPARTAMENT: 2,
+    PRICE: 3
 }
 
 export const EstateType = {
