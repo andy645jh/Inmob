@@ -34,8 +34,17 @@ class EstateList extends Component {
     const tipoInmueble = this.props.searchSelections.tipoInmueble;
     const currentTipoInmueble = currentProps.searchSelections.tipoInmueble;
 
+    const roomNumber = this.props.searchSelections.rooms;
+    const currentRoomNumber = currentProps.searchSelections.rooms;
 
-    if(dep!==currentDep || currentOrder!==order || currentTipoInmueble!==tipoInmueble)
+    const word = this.props.searchSelections.palabra;
+    const currentWord = currentProps.searchSelections.palabra;
+    
+    if(dep !== currentDep || 
+        currentOrder !== order || 
+        currentTipoInmueble !== tipoInmueble || 
+        currentRoomNumber !== roomNumber ||
+        currentWord !== word)
     {        
       this.getEstates();
     }       
@@ -57,6 +66,7 @@ class EstateList extends Component {
         operation: this.props.searchSelections.operacion,
         estateType: this.props.searchSelections.tipoInmueble,
         order: this.props.searchSelections.order,
+        rooms: this.props.searchSelections.rooms,
       };
 
       const estatesJson = await (this.props.isFiltered

@@ -17,7 +17,7 @@ class CardInfo extends Component
     render() {        
        
         return (            
-            <div className="card-info col-sm-3 col-md-4" onClick={(e) => this.onClick(e)}>
+            <div className="card-info col-sm-12 col-md-6" onClick={(e) => this.onClick(e)}>
                 <div className="card">
             
                     <div className="card-body">

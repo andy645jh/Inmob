@@ -15,6 +15,7 @@ export const SET_CITIES_ID = 'SET_CITIES_ID';
 export const SET_DEPARTAMENTS_ID = 'SET_DEPARTAMENTS_ID';
 export const SET_ORDER = 'SET_ORDER';
 export const SET_PRICE = 'SET_PRICE';
+export const SET_ROOMS = 'SET_ROOMS';
 
 export const InputTypes = {
     CHECKBOX: 'CHECKBOX',
@@ -32,7 +33,8 @@ export const FilterOpt = {
     WORD: 0,
     ESTATE_TYPE: 1,
     DEPARTAMENT: 2,
-    PRICE: 3
+    PRICE: 3,
+    ROOMS: 4,
 }
 
 export const EstateType = {
@@ -60,8 +62,7 @@ export const RoomsCombo = createRoomsCombo();
 function createRoomsCombo(){
     var roomsData = [];
     var suffix = "";
-    for (var i = 1; i < 6; i++) {
-        if (i == 5) suffix = "+";
+    for (var i = 1; i < 6; i++) {        
         roomsData.push(new Filter(i, i + suffix, i + suffix));
     }
     return roomsData; 

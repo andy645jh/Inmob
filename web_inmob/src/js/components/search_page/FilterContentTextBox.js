@@ -13,6 +13,8 @@ class FilterContentTextBox extends Component
             type="text"
             placeholder={this.props.placeholder}
             min={this.props.min}
+            name={this.props.name}
+            onChange={(e) => this.props.onChange(e)}
           />          
         </>
     );

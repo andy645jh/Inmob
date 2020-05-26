@@ -48,7 +48,7 @@ class EstateController extends Controller
         $operation = $request->operation;
         $order = $request->order;
         $price = $request->price;
-        
+        $rooms = $request->rooms;
 
         $queryData = Estate::where('id', '>', 0);
         
@@ -81,6 +81,8 @@ class EstateController extends Controller
         {            
             $queryData = $queryData->word($word);
         }                                                                                                                                                                       
+
+        $queryData = $queryData->rooms($rooms);
 
         // mostrar la consulta $queryData->toSql()
         $opt = strpos($order, 'desc') ? 'desc' : 'asc'; 

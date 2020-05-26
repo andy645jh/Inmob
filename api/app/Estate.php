@@ -34,7 +34,11 @@ class Estate extends Model
             return $query->whereBetween('price', [$price["min"],$price["max"]] );
         }else{
             return $query->where('price', '>', $price["min"]);
-        }
-        
+        }        
+    }
+
+    public function scopeRooms($query,$rooms)
+    {       
+        return $query->where('rooms', '>=', $rooms);       
     }
 }

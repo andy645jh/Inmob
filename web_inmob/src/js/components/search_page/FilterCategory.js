@@ -32,7 +32,11 @@ class FilterCategory extends Component {
         );
 
       case InputTypes.TEXTBOX:
-        return <FilterContentTextBox placeholder={this.props.placeholder} />;
+        return <FilterContentTextBox 
+          onChange={this.props.onChange}
+          name={this.props.name} 
+          placeholder={this.props.placeholder} 
+        />;
       
       case InputTypes.COMBOBOX:
         return <FilterContentComboBox onChange={this.props.onChange} data={this.props.data} />;
@@ -44,15 +48,17 @@ class FilterCategory extends Component {
 
   render() {
     const tag = this.getElementType(this.props.type);
+    const showBtn = this.props.showApplyBtn; 
     Debug.Log("FilterCategory type: ",this.props.name);
 
     return (
       <div className="card">
         <div className="card-header text-white bg-primary">
           <span className="align-middle">{this.props.tittle}</span>         
-          <button className="float-right btn btn-warning btn-sm" onClick={this.props.onClick} >
+          {(showBtn && <button className="float-right btn btn-warning btn-sm" onClick={this.props.onClick} >
             <Icon.Check />
           </button>
+          )}
         </div>
         <div className="card-body">{tag}</div>
       </div>
